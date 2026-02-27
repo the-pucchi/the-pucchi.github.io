@@ -1,0 +1,433 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Class 11 Physics — The Pucchi</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Segoe UI', system-ui, -apple-system, sans-serif;
+            background: #0f1117;
+            color: #e8eaf0;
+            line-height: 1.8;
+        }
+
+        /* Navigation */
+        nav {
+            padding: 1.5rem 2rem;
+            background: rgba(26, 29, 46, 0.8);
+            backdrop-filter: blur(10px);
+            border-bottom: 1px solid #3d3f5a;
+            display: flex;
+            align-items: center;
+            gap: 2rem;
+        }
+
+        .logo {
+            font-size: 1.5rem;
+            font-weight: bold;
+            color: #00d4ff;
+            text-decoration: none;
+        }
+
+        .nav-link {
+            color: #8b8fa8;
+            text-decoration: none;
+            font-size: 0.95rem;
+            transition: color 0.3s ease;
+        }
+
+        .nav-link:hover {
+            color: #00d4ff;
+        }
+
+        /* Breadcrumb */
+        .breadcrumb {
+            padding: 1.5rem 2rem;
+            font-size: 0.9rem;
+            color: #8b8fa8;
+        }
+
+        .breadcrumb a {
+            color: #8b8fa8;
+            text-decoration: none;
+            transition: color 0.3s ease;
+        }
+
+        .breadcrumb a:hover {
+            color: #00d4ff;
+        }
+
+        .breadcrumb span {
+            margin: 0 0.5rem;
+        }
+
+        /* Main content */
+        .container {
+            max-width: 900px;
+            margin: 0 auto;
+            padding: 2rem;
+        }
+
+        h1 {
+            font-size: 2.5rem;
+            margin-bottom: 1rem;
+        }
+
+        .subtitle {
+            font-size: 1.1rem;
+            color: #8b8fa8;
+            margin-bottom: 3rem;
+        }
+
+        /* Chapter list */
+        .chapter-list {
+            display: flex;
+            flex-direction: column;
+            gap: 1rem;
+        }
+
+        .chapter-item {
+            background: #1a1d2e;
+            border-radius: 12px;
+            border: 1px solid #3d3f5a;
+            padding: 1.5rem;
+            transition: all 0.3s ease;
+            cursor: pointer;
+            text-decoration: none;
+            color: inherit;
+            display: flex;
+            align-items: flex-start;
+            gap: 1.5rem;
+        }
+
+        .chapter-item:hover:not(.coming-soon) {
+            transform: translateX(10px);
+            border-color: #00d4ff;
+            box-shadow: 0 5px 20px rgba(0, 212, 255, 0.2);
+        }
+
+        .chapter-item.coming-soon {
+            opacity: 0.5;
+            cursor: not-allowed;
+        }
+
+        .chapter-number {
+            font-size: 1.5rem;
+            font-weight: bold;
+            color: #00d4ff;
+            min-width: 2.5rem;
+        }
+
+        .chapter-item.coming-soon .chapter-number {
+            color: #8b8fa8;
+        }
+
+        .chapter-content {
+            flex: 1;
+        }
+
+        .chapter-title {
+            font-size: 1.2rem;
+            font-weight: bold;
+            margin-bottom: 0.3rem;
+            display: flex;
+            align-items: center;
+            gap: 0.8rem;
+        }
+
+        .chapter-description {
+            font-size: 0.95rem;
+            color: #8b8fa8;
+            line-height: 1.6;
+        }
+
+        .badge {
+            display: inline-block;
+            padding: 0.25rem 0.7rem;
+            border-radius: 20px;
+            font-size: 0.75rem;
+            background: #3d3f5a;
+            color: #8b8fa8;
+        }
+
+        .badge.active {
+            background: rgba(6, 214, 160, 0.2);
+            color: #06d6a0;
+        }
+
+        /* Fade-in animation */
+        .fade-in {
+            opacity: 0;
+            transform: translateY(30px);
+            transition: opacity 0.8s ease, transform 0.8s ease;
+        }
+
+        .fade-in.visible {
+            opacity: 1;
+            transform: translateY(0);
+        }
+
+        /* Responsive */
+        @media (max-width: 768px) {
+            h1 {
+                font-size: 2rem;
+            }
+
+            .chapter-item {
+                flex-direction: column;
+                gap: 0.8rem;
+            }
+
+            .chapter-item:hover:not(.coming-soon) {
+                transform: translateY(-5px);
+            }
+        }
+    </style>
+</head>
+<body>
+    <!-- Navigation -->
+    <nav>
+        <a href="index.html" class="logo">The Pucchi</a>
+        <a href="index.html" class="nav-link">All Classes</a>
+    </nav>
+
+    <!-- Breadcrumb -->
+    <div class="breadcrumb">
+        <a href="index.html">Home</a>
+        <span>›</span>
+        <a href="class-11.html">Class 11</a>
+        <span>›</span>
+        <span>Physics</span>
+    </div>
+
+    <!-- Main content -->
+    <div class="container">
+        <h1 class="fade-in">Class 11 Physics</h1>
+        <p class="subtitle fade-in">All 15 chapters from the 2023-24 NCERT syllabus</p>
+
+        <div class="chapter-list fade-in">
+            <div class="chapter-item coming-soon">
+                <div class="chapter-number">1</div>
+                <div class="chapter-content">
+                    <div class="chapter-title">
+                        Physical World
+                        <span class="badge">Coming Soon</span>
+                    </div>
+                    <div class="chapter-description">
+                        The nature of physical laws, fundamental forces, and what physics is really about
+                    </div>
+                </div>
+            </div>
+
+            <div class="chapter-item coming-soon">
+                <div class="chapter-number">2</div>
+                <div class="chapter-content">
+                    <div class="chapter-title">
+                        Units and Measurements
+                        <span class="badge">Coming Soon</span>
+                    </div>
+                    <div class="chapter-description">
+                        SI units, dimensional analysis, significant figures, and measurement errors
+                    </div>
+                </div>
+            </div>
+
+            <div class="chapter-item coming-soon">
+                <div class="chapter-number">3</div>
+                <div class="chapter-content">
+                    <div class="chapter-title">
+                        Motion in a Straight Line
+                        <span class="badge">Coming Soon</span>
+                    </div>
+                    <div class="chapter-description">
+                        Position, velocity, acceleration, and equations of motion in one dimension
+                    </div>
+                </div>
+            </div>
+
+            <a href="class-11-physics-ch4.html" class="chapter-item">
+                <div class="chapter-number">4</div>
+                <div class="chapter-content">
+                    <div class="chapter-title">
+                        Motion in a Plane
+                        <span class="badge active">Interactive</span>
+                    </div>
+                    <div class="chapter-description">
+                        Vectors, vector addition, projectile motion, and circular motion in two dimensions
+                    </div>
+                </div>
+            </a>
+
+            <div class="chapter-item coming-soon">
+                <div class="chapter-number">5</div>
+                <div class="chapter-content">
+                    <div class="chapter-title">
+                        Laws of Motion
+                        <span class="badge">Coming Soon</span>
+                    </div>
+                    <div class="chapter-description">
+                        Newton's three laws, free body diagrams, friction, and circular motion dynamics
+                    </div>
+                </div>
+            </div>
+
+            <div class="chapter-item coming-soon">
+                <div class="chapter-number">6</div>
+                <div class="chapter-content">
+                    <div class="chapter-title">
+                        Work, Energy and Power
+                        <span class="badge">Coming Soon</span>
+                    </div>
+                    <div class="chapter-description">
+                        Work done by forces, kinetic and potential energy, conservation of energy
+                    </div>
+                </div>
+            </div>
+
+            <div class="chapter-item coming-soon">
+                <div class="chapter-number">7</div>
+                <div class="chapter-content">
+                    <div class="chapter-title">
+                        System of Particles and Rotational Motion
+                        <span class="badge">Coming Soon</span>
+                    </div>
+                    <div class="chapter-description">
+                        Center of mass, angular velocity, torque, and moment of inertia
+                    </div>
+                </div>
+            </div>
+
+            <div class="chapter-item coming-soon">
+                <div class="chapter-number">8</div>
+                <div class="chapter-content">
+                    <div class="chapter-title">
+                        Gravitation
+                        <span class="badge">Coming Soon</span>
+                    </div>
+                    <div class="chapter-description">
+                        Universal gravitation, Kepler's laws, gravitational potential energy, satellites
+                    </div>
+                </div>
+            </div>
+
+            <div class="chapter-item coming-soon">
+                <div class="chapter-number">9</div>
+                <div class="chapter-content">
+                    <div class="chapter-title">
+                        Mechanical Properties of Solids
+                        <span class="badge">Coming Soon</span>
+                    </div>
+                    <div class="chapter-description">
+                        Stress, strain, elasticity, Young's modulus, and deformation of materials
+                    </div>
+                </div>
+            </div>
+
+            <div class="chapter-item coming-soon">
+                <div class="chapter-number">10</div>
+                <div class="chapter-content">
+                    <div class="chapter-title">
+                        Mechanical Properties of Fluids
+                        <span class="badge">Coming Soon</span>
+                    </div>
+                    <div class="chapter-description">
+                        Pressure, Pascal's law, Archimedes' principle, Bernoulli's equation, viscosity
+                    </div>
+                </div>
+            </div>
+
+            <div class="chapter-item coming-soon">
+                <div class="chapter-number">11</div>
+                <div class="chapter-content">
+                    <div class="chapter-title">
+                        Thermal Properties of Matter
+                        <span class="badge">Coming Soon</span>
+                    </div>
+                    <div class="chapter-description">
+                        Temperature, heat, thermal expansion, specific heat, phase changes
+                    </div>
+                </div>
+            </div>
+
+            <div class="chapter-item coming-soon">
+                <div class="chapter-number">12</div>
+                <div class="chapter-content">
+                    <div class="chapter-title">
+                        Thermodynamics
+                        <span class="badge">Coming Soon</span>
+                    </div>
+                    <div class="chapter-description">
+                        Laws of thermodynamics, heat engines, refrigerators, Carnot cycle
+                    </div>
+                </div>
+            </div>
+
+            <div class="chapter-item coming-soon">
+                <div class="chapter-number">13</div>
+                <div class="chapter-content">
+                    <div class="chapter-title">
+                        Kinetic Theory
+                        <span class="badge">Coming Soon</span>
+                    </div>
+                    <div class="chapter-description">
+                        Molecular behavior of gases, pressure, temperature, mean free path
+                    </div>
+                </div>
+            </div>
+
+            <div class="chapter-item coming-soon">
+                <div class="chapter-number">14</div>
+                <div class="chapter-content">
+                    <div class="chapter-title">
+                        Oscillations
+                        <span class="badge">Coming Soon</span>
+                    </div>
+                    <div class="chapter-description">
+                        Simple harmonic motion, pendulums, springs, energy in oscillations
+                    </div>
+                </div>
+            </div>
+
+            <div class="chapter-item coming-soon">
+                <div class="chapter-number">15</div>
+                <div class="chapter-content">
+                    <div class="chapter-title">
+                        Waves
+                        <span class="badge">Coming Soon</span>
+                    </div>
+                    <div class="chapter-description">
+                        Wave motion, sound waves, Doppler effect, beats, standing waves
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        // Fade-in animation on scroll
+        const observerOptions = {
+            threshold: 0.1,
+            rootMargin: '0px 0px -50px 0px'
+        };
+
+        const observer = new IntersectionObserver((entries) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    entry.target.classList.add('visible');
+                }
+            });
+        }, observerOptions);
+
+        document.querySelectorAll('.fade-in').forEach(el => {
+            observer.observe(el);
+        });
+    </script>
+</body>
+</html>

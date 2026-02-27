@@ -1,0 +1,1097 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Chapter 4: Motion in a Plane — Class 11 Physics — The Pucchi</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Segoe UI', system-ui, -apple-system, sans-serif;
+            background: #0f1117;
+            color: #e8eaf0;
+            line-height: 1.8;
+        }
+
+        /* Progress bar */
+        .progress-bar {
+            position: fixed;
+            top: 0;
+            left: 0;
+            height: 3px;
+            background: linear-gradient(90deg, #00d4ff, #06d6a0);
+            z-index: 1000;
+            transition: width 0.1s ease;
+        }
+
+        /* Navigation */
+        nav {
+            padding: 1.5rem 2rem;
+            background: rgba(26, 29, 46, 0.8);
+            backdrop-filter: blur(10px);
+            border-bottom: 1px solid #3d3f5a;
+            display: flex;
+            align-items: center;
+            gap: 2rem;
+            position: sticky;
+            top: 0;
+            z-index: 100;
+        }
+
+        .logo {
+            font-size: 1.5rem;
+            font-weight: bold;
+            color: #00d4ff;
+            text-decoration: none;
+        }
+
+        .nav-link {
+            color: #8b8fa8;
+            text-decoration: none;
+            font-size: 0.95rem;
+            transition: color 0.3s ease;
+        }
+
+        .nav-link:hover {
+            color: #00d4ff;
+        }
+
+        /* Breadcrumb */
+        .breadcrumb {
+            padding: 1.5rem 2rem;
+            font-size: 0.9rem;
+            color: #8b8fa8;
+        }
+
+        .breadcrumb a {
+            color: #8b8fa8;
+            text-decoration: none;
+            transition: color 0.3s ease;
+        }
+
+        .breadcrumb a:hover {
+            color: #00d4ff;
+        }
+
+        .breadcrumb span {
+            margin: 0 0.5rem;
+        }
+
+        /* Main content */
+        .container {
+            max-width: 900px;
+            margin: 0 auto;
+            padding: 2rem;
+        }
+
+        .chapter-header {
+            margin-bottom: 3rem;
+        }
+
+        h1 {
+            font-size: 2.5rem;
+            margin-bottom: 1rem;
+        }
+
+        .intro {
+            font-size: 1.1rem;
+            color: #e8eaf0;
+            margin-bottom: 1rem;
+        }
+
+        /* Section styling */
+        .section {
+            margin-bottom: 4rem;
+            padding: 2rem;
+            background: #1a1d2e;
+            border-radius: 12px;
+            border: 1px solid #3d3f5a;
+        }
+
+        h2 {
+            font-size: 1.8rem;
+            margin-bottom: 1.5rem;
+            padding-left: 1rem;
+            border-left: 3px solid #00d4ff;
+        }
+
+        .section p {
+            font-size: 1.1rem;
+            margin-bottom: 1rem;
+        }
+
+        .section ul {
+            margin-left: 2rem;
+            margin-bottom: 1.5rem;
+        }
+
+        .section li {
+            margin-bottom: 0.5rem;
+            font-size: 1.05rem;
+        }
+
+        /* Canvas simulation */
+        .simulation {
+            margin: 2rem 0;
+            padding: 2rem;
+            background: #12142a;
+            border-radius: 12px;
+            border: 1px solid #3d3f5a;
+        }
+
+        .simulation-title {
+            font-size: 1.2rem;
+            font-weight: bold;
+            margin-bottom: 1rem;
+            color: #00d4ff;
+        }
+
+        canvas {
+            display: block;
+            width: 100%;
+            max-width: 600px;
+            margin: 0 auto;
+            border-radius: 8px;
+            background: #0a0b15;
+            cursor: grab;
+            touch-action: none;
+        }
+
+        canvas:active {
+            cursor: grabbing;
+        }
+
+        .readout {
+            margin-top: 1.5rem;
+            padding: 1rem;
+            background: rgba(0, 212, 255, 0.05);
+            border-radius: 8px;
+            border: 1px solid rgba(0, 212, 255, 0.2);
+        }
+
+        .readout-item {
+            font-size: 1rem;
+            margin-bottom: 0.5rem;
+            font-family: 'Courier New', monospace;
+        }
+
+        .readout-item:last-child {
+            margin-bottom: 0;
+        }
+
+        .readout-label {
+            color: #8b8fa8;
+        }
+
+        .readout-value {
+            color: #00d4ff;
+            font-weight: bold;
+        }
+
+        /* Callout box */
+        .callout {
+            margin: 1.5rem 0;
+            padding: 1rem 1.5rem;
+            background: rgba(26, 29, 46, 0.5);
+            border-left: 3px solid #ffd166;
+            border-radius: 8px;
+        }
+
+        .callout-title {
+            font-weight: bold;
+            color: #ffd166;
+            margin-bottom: 0.5rem;
+        }
+
+        /* Interactive question */
+        .question {
+            margin: 2rem 0;
+            padding: 1.5rem;
+            background: rgba(255, 107, 53, 0.05);
+            border-radius: 8px;
+            border: 1px solid rgba(255, 107, 53, 0.3);
+        }
+
+        .question-text {
+            font-size: 1.1rem;
+            margin-bottom: 1rem;
+            font-weight: bold;
+        }
+
+        .question-options {
+            display: flex;
+            gap: 1rem;
+            flex-wrap: wrap;
+        }
+
+        .option-btn {
+            padding: 0.7rem 1.5rem;
+            background: #1a1d2e;
+            border: 2px solid #3d3f5a;
+            border-radius: 8px;
+            color: #e8eaf0;
+            cursor: pointer;
+            font-size: 1rem;
+            transition: all 0.3s ease;
+        }
+
+        .option-btn:hover {
+            border-color: #00d4ff;
+            background: rgba(0, 212, 255, 0.1);
+        }
+
+        .option-btn.correct {
+            border-color: #06d6a0;
+            background: rgba(6, 214, 160, 0.2);
+        }
+
+        .option-btn.incorrect {
+            border-color: #ff6b35;
+            background: rgba(255, 107, 53, 0.2);
+        }
+
+        .answer-reveal {
+            margin-top: 1rem;
+            padding: 1rem;
+            background: rgba(6, 214, 160, 0.1);
+            border-radius: 8px;
+            display: none;
+        }
+
+        .answer-reveal.show {
+            display: block;
+        }
+
+        /* Control button */
+        .control-btn {
+            padding: 0.8rem 1.5rem;
+            background: linear-gradient(135deg, #00d4ff, #06d6a0);
+            border: none;
+            border-radius: 8px;
+            color: #0f1117;
+            font-weight: bold;
+            cursor: pointer;
+            font-size: 1rem;
+            transition: transform 0.2s ease, box-shadow 0.2s ease;
+            margin-top: 1rem;
+        }
+
+        .control-btn:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 5px 20px rgba(0, 212, 255, 0.4);
+        }
+
+        .control-btn:active {
+            transform: translateY(0);
+        }
+
+        /* Footer navigation */
+        .chapter-nav {
+            margin-top: 4rem;
+            padding: 2rem;
+            background: #1a1d2e;
+            border-radius: 12px;
+            border: 1px solid #3d3f5a;
+        }
+
+        .coming-soon-text {
+            color: #8b8fa8;
+            margin-bottom: 1rem;
+        }
+
+        .nav-buttons {
+            display: flex;
+            gap: 1rem;
+            margin-top: 1.5rem;
+        }
+
+        .nav-btn {
+            flex: 1;
+            padding: 1rem;
+            background: #3d3f5a;
+            border: 1px solid #3d3f5a;
+            border-radius: 8px;
+            color: #8b8fa8;
+            text-align: center;
+            cursor: not-allowed;
+            opacity: 0.5;
+        }
+
+        .back-link {
+            display: inline-block;
+            margin-top: 1rem;
+            color: #00d4ff;
+            text-decoration: none;
+            transition: color 0.3s ease;
+        }
+
+        .back-link:hover {
+            color: #06d6a0;
+        }
+
+        /* Fade-in animation */
+        .fade-in {
+            opacity: 0;
+            transform: translateY(30px);
+            transition: opacity 0.8s ease, transform 0.8s ease;
+        }
+
+        .fade-in.visible {
+            opacity: 1;
+            transform: translateY(0);
+        }
+
+        /* Responsive */
+        @media (max-width: 768px) {
+            h1 {
+                font-size: 2rem;
+            }
+
+            h2 {
+                font-size: 1.5rem;
+            }
+
+            .section {
+                padding: 1.5rem;
+            }
+
+            .simulation {
+                padding: 1rem;
+            }
+
+            canvas {
+                height: 300px;
+            }
+
+            .question-options {
+                flex-direction: column;
+            }
+
+            .nav-buttons {
+                flex-direction: column;
+            }
+        }
+    </style>
+</head>
+<body>
+    <!-- Progress bar -->
+    <div class="progress-bar" id="progressBar"></div>
+
+    <!-- Navigation -->
+    <nav>
+        <a href="index.html" class="logo">The Pucchi</a>
+        <a href="index.html" class="nav-link">All Classes</a>
+    </nav>
+
+    <!-- Breadcrumb -->
+    <div class="breadcrumb">
+        <a href="index.html">Home</a>
+        <span>›</span>
+        <a href="class-11.html">Class 11</a>
+        <span>›</span>
+        <a href="class-11-physics.html">Physics</a>
+        <span>›</span>
+        <span>Chapter 4</span>
+    </div>
+
+    <!-- Main content -->
+    <div class="container">
+        <div class="chapter-header fade-in">
+            <h1>Chapter 4 — Motion in a Plane</h1>
+            <p class="intro">
+                You've mastered motion in a straight line. But the world isn't one-dimensional. Balls fly through the air in curves. Cars turn corners. Planets orbit stars. This is where vectors come in — and where physics gets really interesting.
+            </p>
+        </div>
+
+        <!-- Section 1: Scalars and Vectors -->
+        <section class="section fade-in">
+            <h2>1. Scalars and Vectors</h2>
+
+            <p>
+                Some quantities just need a number. Temperature: 25°C. Mass: 5 kg. Speed: 10 m/s. These are <strong>scalars</strong> — they have magnitude (size) but no direction.
+            </p>
+
+            <p>
+                But try describing the wind. "10 m/s" isn't enough — you need to know which way it's blowing. That's a <strong>vector</strong> — it has both magnitude and direction.
+            </p>
+
+            <p><strong>Examples:</strong></p>
+            <ul>
+                <li><strong>Scalars:</strong> temperature, mass, distance, speed, time, energy</li>
+                <li><strong>Vectors:</strong> displacement, velocity, force, acceleration, momentum</li>
+            </ul>
+
+            <p>
+                We draw vectors as arrows. The length of the arrow shows magnitude. The direction of the arrow shows... well, direction. We write them in bold (<strong>A</strong>) or with an arrow on top (A⃗).
+            </p>
+
+            <p>
+                Two vectors are equal only if <em>both</em> their magnitude and direction match. Same length, same direction, same vector.
+            </p>
+
+            <!-- Simulation 1: Vector Playground -->
+            <div class="simulation">
+                <div class="simulation-title">Interactive: Vector Playground</div>
+                <p style="font-size: 0.95rem; color: #8b8fa8; margin-bottom: 1rem;">
+                    Drag the tip of the vector to change its magnitude and direction. Watch how the components update in real time.
+                </p>
+                <canvas id="vectorCanvas" width="600" height="400"></canvas>
+                <div class="readout">
+                    <div class="readout-item">
+                        <span class="readout-label">Magnitude:</span>
+                        <span class="readout-value" id="magnitude">0.0</span>
+                        <span class="readout-label">units</span>
+                    </div>
+                    <div class="readout-item">
+                        <span class="readout-label">Angle with x-axis:</span>
+                        <span class="readout-value" id="angle">0.0</span>
+                        <span class="readout-label">°</span>
+                    </div>
+                    <div class="readout-item">
+                        <span class="readout-label">Component form:</span>
+                        <span class="readout-value" id="components">A = 0.0î + 0.0ĵ</span>
+                    </div>
+                </div>
+            </div>
+
+            <div class="callout">
+                <div class="callout-title">💡 Did you know?</div>
+                <p>
+                    Scalars add like normal numbers. 5 kg + 3 kg = 8 kg. But vectors don't — direction matters. That's what makes them interesting.
+                </p>
+            </div>
+        </section>
+
+        <!-- Section 2: Addition of Vectors -->
+        <section class="section fade-in">
+            <h2>2. Addition of Vectors — Triangle Law</h2>
+
+            <p>
+                Here's the thing: you can't just add vector magnitudes. If you walk 3 meters north, then 4 meters east, you didn't travel 7 meters total — you're √(3² + 4²) = 5 meters from where you started. Direction matters.
+            </p>
+
+            <p>
+                The <strong>Triangle Law</strong> gives us the rule: to add vectors <strong>A</strong> and <strong>B</strong>, place the tail of <strong>B</strong> at the head (tip) of <strong>A</strong>. The resultant <strong>R</strong> goes from the tail of <strong>A</strong> to the head of <strong>B</strong>, closing the triangle.
+            </p>
+
+            <p>
+                Mathematically: <strong>R = A + B</strong>
+            </p>
+
+            <p>
+                Vector addition is <em>commutative</em>: <strong>A + B = B + A</strong>. It doesn't matter which vector you place first — the resultant is the same. Let's prove it.
+            </p>
+
+            <!-- Question -->
+            <div class="question">
+                <div class="question-text">⚡ You Predict: If we add B first and then A, will the resultant change?</div>
+                <div class="question-options">
+                    <button class="option-btn" data-answer="wrong">Yes, it will change</button>
+                    <button class="option-btn" data-answer="correct">No, same resultant</button>
+                </div>
+                <div class="answer-reveal" id="answerReveal">
+                    <strong>Correct!</strong> Vector addition is commutative. A + B = B + A. The order doesn't matter — the resultant is always the same. Watch the simulation below to see it in action.
+                </div>
+            </div>
+
+            <!-- Simulation 2: Vector Addition -->
+            <div class="simulation">
+                <div class="simulation-title">Interactive: Vector Addition (Triangle Law)</div>
+                <p style="font-size: 0.95rem; color: #8b8fa8; margin-bottom: 1rem;">
+                    Drag the tips of vectors A (cyan) and B (orange) to change them. The yellow arrow is the resultant R. Click "Swap A + B ↔ B + A" to see commutativity in action.
+                </p>
+                <canvas id="additionCanvas" width="600" height="400"></canvas>
+                <div class="readout">
+                    <div class="readout-item">
+                        <span class="readout-label">|A| =</span>
+                        <span class="readout-value" id="magA">0.0</span>
+                        <span class="readout-label">units</span>
+                    </div>
+                    <div class="readout-item">
+                        <span class="readout-label">|B| =</span>
+                        <span class="readout-value" id="magB">0.0</span>
+                        <span class="readout-label">units</span>
+                    </div>
+                    <div class="readout-item">
+                        <span class="readout-label">|R| =</span>
+                        <span class="readout-value" id="magR">0.0</span>
+                        <span class="readout-label">units</span>
+                    </div>
+                    <div class="readout-item">
+                        <span class="readout-label">Current order:</span>
+                        <span class="readout-value" id="orderDisplay">A + B</span>
+                    </div>
+                </div>
+                <button class="control-btn" id="swapBtn">Swap A + B ↔ B + A</button>
+            </div>
+        </section>
+
+        <!-- Footer navigation -->
+        <div class="chapter-nav fade-in">
+            <p class="coming-soon-text">
+                <strong>More sections coming soon:</strong> Resolution of Vectors, Projectile Motion, Circular Motion
+            </p>
+            <div class="nav-buttons">
+                <div class="nav-btn">← Previous: Chapter 3</div>
+                <div class="nav-btn">Next: Chapter 5 →</div>
+            </div>
+            <a href="class-11-physics.html" class="back-link">← Back to all chapters</a>
+        </div>
+    </div>
+
+    <script>
+        // Progress bar on scroll
+        window.addEventListener('scroll', () => {
+            const windowHeight = window.innerHeight;
+            const documentHeight = document.documentElement.scrollHeight - windowHeight;
+            const scrolled = window.scrollY;
+            const progress = (scrolled / documentHeight) * 100;
+            document.getElementById('progressBar').style.width = progress + '%';
+        });
+
+        // Fade-in animation on scroll
+        const observerOptions = {
+            threshold: 0.1,
+            rootMargin: '0px 0px -50px 0px'
+        };
+
+        const observer = new IntersectionObserver((entries) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    entry.target.classList.add('visible');
+                }
+            });
+        }, observerOptions);
+
+        document.querySelectorAll('.fade-in').forEach(el => {
+            observer.observe(el);
+        });
+
+        // Question interaction
+        document.querySelectorAll('.option-btn').forEach(btn => {
+            btn.addEventListener('click', function() {
+                const isCorrect = this.dataset.answer === 'correct';
+
+                // Mark all buttons
+                document.querySelectorAll('.option-btn').forEach(b => {
+                    b.disabled = true;
+                    if (b.dataset.answer === 'correct') {
+                        b.classList.add('correct');
+                    } else if (b === this && !isCorrect) {
+                        b.classList.add('incorrect');
+                    }
+                });
+
+                // Show answer
+                document.getElementById('answerReveal').classList.add('show');
+            });
+        });
+
+        // ========== SIMULATION 1: Vector Playground ==========
+        /**
+         * Interactive vector playground - user drags a single vector's tip
+         * and sees live updates of magnitude, angle, and component form
+         */
+        const canvas1 = document.getElementById('vectorCanvas');
+        const ctx1 = canvas1.getContext('2d');
+
+        // Scale for high DPI displays
+        const dpr = window.devicePixelRatio || 1;
+        canvas1.width = 600 * dpr;
+        canvas1.height = 400 * dpr;
+        canvas1.style.width = '600px';
+        canvas1.style.height = '400px';
+        ctx1.scale(dpr, dpr);
+
+        const origin1 = { x: 300, y: 200 };
+        const scale1 = 50; // pixels per unit
+        let vector1 = { x: 3, y: 2 }; // Initial vector in units
+        let dragging1 = false;
+
+        function drawGrid1() {
+            ctx1.strokeStyle = 'rgba(61, 63, 90, 0.3)';
+            ctx1.lineWidth = 0.5;
+
+            // Vertical lines
+            for (let x = 0; x <= 600; x += scale1) {
+                ctx1.beginPath();
+                ctx1.moveTo(x, 0);
+                ctx1.lineTo(x, 400);
+                ctx1.stroke();
+            }
+
+            // Horizontal lines
+            for (let y = 0; y <= 400; y += scale1) {
+                ctx1.beginPath();
+                ctx1.moveTo(0, y);
+                ctx1.lineTo(600, y);
+                ctx1.stroke();
+            }
+
+            // Axes
+            ctx1.strokeStyle = 'rgba(139, 143, 168, 0.5)';
+            ctx1.lineWidth = 1.5;
+
+            // X axis
+            ctx1.beginPath();
+            ctx1.moveTo(0, origin1.y);
+            ctx1.lineTo(600, origin1.y);
+            ctx1.stroke();
+
+            // Y axis
+            ctx1.beginPath();
+            ctx1.moveTo(origin1.x, 0);
+            ctx1.lineTo(origin1.x, 400);
+            ctx1.stroke();
+        }
+
+        function drawVector1(vx, vy, color, label) {
+            const endX = origin1.x + vx * scale1;
+            const endY = origin1.y - vy * scale1; // Flip Y for screen coords
+
+            // Vector line
+            ctx1.strokeStyle = color;
+            ctx1.lineWidth = 3;
+            ctx1.shadowBlur = 10;
+            ctx1.shadowColor = color;
+
+            ctx1.beginPath();
+            ctx1.moveTo(origin1.x, origin1.y);
+            ctx1.lineTo(endX, endY);
+            ctx1.stroke();
+
+            ctx1.shadowBlur = 0;
+
+            // Arrowhead
+            const angle = Math.atan2(-vy, vx);
+            const headlen = 12;
+
+            ctx1.fillStyle = color;
+            ctx1.beginPath();
+            ctx1.moveTo(endX, endY);
+            ctx1.lineTo(
+                endX - headlen * Math.cos(angle - Math.PI / 6),
+                endY + headlen * Math.sin(angle - Math.PI / 6)
+            );
+            ctx1.lineTo(
+                endX - headlen * Math.cos(angle + Math.PI / 6),
+                endY + headlen * Math.sin(angle + Math.PI / 6)
+            );
+            ctx1.closePath();
+            ctx1.fill();
+
+            // Label
+            ctx1.fillStyle = color;
+            ctx1.font = 'bold 16px sans-serif';
+            ctx1.fillText(label, endX + 10, endY - 10);
+
+            // Draggable point
+            ctx1.fillStyle = color;
+            ctx1.beginPath();
+            ctx1.arc(endX, endY, 8, 0, Math.PI * 2);
+            ctx1.fill();
+        }
+
+        function updateReadout1() {
+            const magnitude = Math.sqrt(vector1.x * vector1.x + vector1.y * vector1.y);
+            const angle = Math.atan2(vector1.y, vector1.x) * (180 / Math.PI);
+
+            document.getElementById('magnitude').textContent = magnitude.toFixed(2);
+            document.getElementById('angle').textContent = angle.toFixed(1);
+            document.getElementById('components').textContent =
+                `A = ${vector1.x.toFixed(2)}î + ${vector1.y.toFixed(2)}ĵ`;
+        }
+
+        function render1() {
+            ctx1.clearRect(0, 0, 600, 400);
+            drawGrid1();
+            drawVector1(vector1.x, vector1.y, '#00d4ff', 'A');
+            updateReadout1();
+        }
+
+        function getMousePos1(e) {
+            const rect = canvas1.getBoundingClientRect();
+            const scaleX = 600 / rect.width;
+            const scaleY = 400 / rect.height;
+            const clientX = e.touches ? e.touches[0].clientX : e.clientX;
+            const clientY = e.touches ? e.touches[0].clientY : e.clientY;
+
+            return {
+                x: (clientX - rect.left) * scaleX,
+                y: (clientY - rect.top) * scaleY
+            };
+        }
+
+        function isNearPoint1(mx, my, px, py) {
+            const dist = Math.sqrt((mx - px) ** 2 + (my - py) ** 2);
+            return dist < 20;
+        }
+
+        canvas1.addEventListener('mousedown', (e) => {
+            const pos = getMousePos1(e);
+            const endX = origin1.x + vector1.x * scale1;
+            const endY = origin1.y - vector1.y * scale1;
+
+            if (isNearPoint1(pos.x, pos.y, endX, endY)) {
+                dragging1 = true;
+            }
+        });
+
+        canvas1.addEventListener('touchstart', (e) => {
+            e.preventDefault();
+            const pos = getMousePos1(e);
+            const endX = origin1.x + vector1.x * scale1;
+            const endY = origin1.y - vector1.y * scale1;
+
+            if (isNearPoint1(pos.x, pos.y, endX, endY)) {
+                dragging1 = true;
+            }
+        });
+
+        canvas1.addEventListener('mousemove', (e) => {
+            if (dragging1) {
+                const pos = getMousePos1(e);
+                vector1.x = (pos.x - origin1.x) / scale1;
+                vector1.y = -(pos.y - origin1.y) / scale1;
+                render1();
+            }
+        });
+
+        canvas1.addEventListener('touchmove', (e) => {
+            e.preventDefault();
+            if (dragging1) {
+                const pos = getMousePos1(e);
+                vector1.x = (pos.x - origin1.x) / scale1;
+                vector1.y = -(pos.y - origin1.y) / scale1;
+                render1();
+            }
+        });
+
+        canvas1.addEventListener('mouseup', () => { dragging1 = false; });
+        canvas1.addEventListener('touchend', () => { dragging1 = false; });
+        canvas1.addEventListener('mouseleave', () => { dragging1 = false; });
+
+        render1();
+
+        // ========== SIMULATION 2: Vector Addition ==========
+        /**
+         * Interactive vector addition with triangle law visualization
+         * User can drag vectors A and B, and swap their order to prove commutativity
+         */
+        const canvas2 = document.getElementById('additionCanvas');
+        const ctx2 = canvas2.getContext('2d');
+
+        canvas2.width = 600 * dpr;
+        canvas2.height = 400 * dpr;
+        canvas2.style.width = '600px';
+        canvas2.style.height = '400px';
+        ctx2.scale(dpr, dpr);
+
+        const origin2 = { x: 100, y: 200 };
+        const scale2 = 40;
+        let vectorA = { x: 3, y: 2 };
+        let vectorB = { x: 2, y: -1.5 };
+        let swapped = false;
+        let dragging2 = null;
+        let animating = false;
+
+        function drawGrid2() {
+            ctx2.strokeStyle = 'rgba(61, 63, 90, 0.3)';
+            ctx2.lineWidth = 0.5;
+
+            for (let x = 0; x <= 600; x += scale2) {
+                ctx2.beginPath();
+                ctx2.moveTo(x, 0);
+                ctx2.lineTo(x, 400);
+                ctx2.stroke();
+            }
+
+            for (let y = 0; y <= 400; y += scale2) {
+                ctx2.beginPath();
+                ctx2.moveTo(0, y);
+                ctx2.lineTo(600, y);
+                ctx2.stroke();
+            }
+
+            ctx2.strokeStyle = 'rgba(139, 143, 168, 0.5)';
+            ctx2.lineWidth = 1.5;
+
+            ctx2.beginPath();
+            ctx2.moveTo(0, origin2.y);
+            ctx2.lineTo(600, origin2.y);
+            ctx2.stroke();
+
+            ctx2.beginPath();
+            ctx2.moveTo(origin2.x, 0);
+            ctx2.lineTo(origin2.x, 400);
+            ctx2.stroke();
+        }
+
+        function drawVector2(startX, startY, vx, vy, color, label) {
+            const endX = startX + vx * scale2;
+            const endY = startY - vy * scale2;
+
+            ctx2.strokeStyle = color;
+            ctx2.lineWidth = 3;
+            ctx2.shadowBlur = 10;
+            ctx2.shadowColor = color;
+
+            ctx2.beginPath();
+            ctx2.moveTo(startX, startY);
+            ctx2.lineTo(endX, endY);
+            ctx2.stroke();
+
+            ctx2.shadowBlur = 0;
+
+            const angle = Math.atan2(-vy, vx);
+            const headlen = 12;
+
+            ctx2.fillStyle = color;
+            ctx2.beginPath();
+            ctx2.moveTo(endX, endY);
+            ctx2.lineTo(
+                endX - headlen * Math.cos(angle - Math.PI / 6),
+                endY + headlen * Math.sin(angle - Math.PI / 6)
+            );
+            ctx2.lineTo(
+                endX - headlen * Math.cos(angle + Math.PI / 6),
+                endY + headlen * Math.sin(angle + Math.PI / 6)
+            );
+            ctx2.closePath();
+            ctx2.fill();
+
+            ctx2.fillStyle = color;
+            ctx2.font = 'bold 16px sans-serif';
+            ctx2.fillText(label, endX + 10, endY - 10);
+
+            ctx2.fillStyle = color;
+            ctx2.beginPath();
+            ctx2.arc(endX, endY, 8, 0, Math.PI * 2);
+            ctx2.fill();
+
+            return { x: endX, y: endY };
+        }
+
+        function updateReadout2() {
+            const magA = Math.sqrt(vectorA.x ** 2 + vectorA.y ** 2);
+            const magB = Math.sqrt(vectorB.x ** 2 + vectorB.y ** 2);
+            const resultX = vectorA.x + vectorB.x;
+            const resultY = vectorA.y + vectorB.y;
+            const magR = Math.sqrt(resultX ** 2 + resultY ** 2);
+
+            document.getElementById('magA').textContent = magA.toFixed(2);
+            document.getElementById('magB').textContent = magB.toFixed(2);
+            document.getElementById('magR').textContent = magR.toFixed(2);
+            document.getElementById('orderDisplay').textContent = swapped ? 'B + A' : 'A + B';
+        }
+
+        function render2() {
+            ctx2.clearRect(0, 0, 600, 400);
+            drawGrid2();
+
+            if (!swapped) {
+                // Draw A from origin
+                const endA = drawVector2(origin2.x, origin2.y, vectorA.x, vectorA.y, '#00d4ff', 'A');
+                // Draw B from end of A
+                drawVector2(endA.x, endA.y, vectorB.x, vectorB.y, '#ff6b35', 'B');
+                // Draw resultant R from origin to end of B
+                const resultX = vectorA.x + vectorB.x;
+                const resultY = vectorA.y + vectorB.y;
+                drawVector2(origin2.x, origin2.y, resultX, resultY, '#ffd166', 'R');
+            } else {
+                // Draw B from origin
+                const endB = drawVector2(origin2.x, origin2.y, vectorB.x, vectorB.y, '#ff6b35', 'B');
+                // Draw A from end of B
+                drawVector2(endB.x, endB.y, vectorA.x, vectorA.y, '#00d4ff', 'A');
+                // Draw resultant R from origin to end of A
+                const resultX = vectorA.x + vectorB.x;
+                const resultY = vectorA.y + vectorB.y;
+                drawVector2(origin2.x, origin2.y, resultX, resultY, '#ffd166', 'R');
+            }
+
+            updateReadout2();
+        }
+
+        function getMousePos2(e) {
+            const rect = canvas2.getBoundingClientRect();
+            const scaleX = 600 / rect.width;
+            const scaleY = 400 / rect.height;
+            const clientX = e.touches ? e.touches[0].clientX : e.clientX;
+            const clientY = e.touches ? e.touches[0].clientY : e.clientY;
+
+            return {
+                x: (clientX - rect.left) * scaleX,
+                y: (clientY - rect.top) * scaleY
+            };
+        }
+
+        function isNearPoint2(mx, my, px, py) {
+            const dist = Math.sqrt((mx - px) ** 2 + (my - py) ** 2);
+            return dist < 20;
+        }
+
+        canvas2.addEventListener('mousedown', (e) => {
+            const pos = getMousePos2(e);
+
+            if (!swapped) {
+                const endA = {
+                    x: origin2.x + vectorA.x * scale2,
+                    y: origin2.y - vectorA.y * scale2
+                };
+                const endB = {
+                    x: endA.x + vectorB.x * scale2,
+                    y: endA.y - vectorB.y * scale2
+                };
+
+                if (isNearPoint2(pos.x, pos.y, endA.x, endA.y)) {
+                    dragging2 = 'A';
+                } else if (isNearPoint2(pos.x, pos.y, endB.x, endB.y)) {
+                    dragging2 = 'B';
+                }
+            } else {
+                const endB = {
+                    x: origin2.x + vectorB.x * scale2,
+                    y: origin2.y - vectorB.y * scale2
+                };
+                const endA = {
+                    x: endB.x + vectorA.x * scale2,
+                    y: endB.y - vectorA.y * scale2
+                };
+
+                if (isNearPoint2(pos.x, pos.y, endB.x, endB.y)) {
+                    dragging2 = 'B';
+                } else if (isNearPoint2(pos.x, pos.y, endA.x, endA.y)) {
+                    dragging2 = 'A';
+                }
+            }
+        });
+
+        canvas2.addEventListener('touchstart', (e) => {
+            e.preventDefault();
+            const pos = getMousePos2(e);
+
+            if (!swapped) {
+                const endA = {
+                    x: origin2.x + vectorA.x * scale2,
+                    y: origin2.y - vectorA.y * scale2
+                };
+                const endB = {
+                    x: endA.x + vectorB.x * scale2,
+                    y: endA.y - vectorB.y * scale2
+                };
+
+                if (isNearPoint2(pos.x, pos.y, endA.x, endA.y)) {
+                    dragging2 = 'A';
+                } else if (isNearPoint2(pos.x, pos.y, endB.x, endB.y)) {
+                    dragging2 = 'B';
+                }
+            } else {
+                const endB = {
+                    x: origin2.x + vectorB.x * scale2,
+                    y: origin2.y - vectorB.y * scale2
+                };
+                const endA = {
+                    x: endB.x + vectorA.x * scale2,
+                    y: endB.y - vectorA.y * scale2
+                };
+
+                if (isNearPoint2(pos.x, pos.y, endB.x, endB.y)) {
+                    dragging2 = 'B';
+                } else if (isNearPoint2(pos.x, pos.y, endA.x, endA.y)) {
+                    dragging2 = 'A';
+                }
+            }
+        });
+
+        canvas2.addEventListener('mousemove', (e) => {
+            if (dragging2) {
+                const pos = getMousePos2(e);
+
+                if (dragging2 === 'A') {
+                    vectorA.x = (pos.x - origin2.x) / scale2;
+                    vectorA.y = -(pos.y - origin2.y) / scale2;
+                } else if (dragging2 === 'B') {
+                    if (!swapped) {
+                        const endA = {
+                            x: origin2.x + vectorA.x * scale2,
+                            y: origin2.y - vectorA.y * scale2
+                        };
+                        vectorB.x = (pos.x - endA.x) / scale2;
+                        vectorB.y = -(pos.y - endA.y) / scale2;
+                    } else {
+                        vectorB.x = (pos.x - origin2.x) / scale2;
+                        vectorB.y = -(pos.y - origin2.y) / scale2;
+                    }
+                }
+
+                render2();
+            }
+        });
+
+        canvas2.addEventListener('touchmove', (e) => {
+            e.preventDefault();
+            if (dragging2) {
+                const pos = getMousePos2(e);
+
+                if (dragging2 === 'A') {
+                    vectorA.x = (pos.x - origin2.x) / scale2;
+                    vectorA.y = -(pos.y - origin2.y) / scale2;
+                } else if (dragging2 === 'B') {
+                    if (!swapped) {
+                        const endA = {
+                            x: origin2.x + vectorA.x * scale2,
+                            y: origin2.y - vectorA.y * scale2
+                        };
+                        vectorB.x = (pos.x - endA.x) / scale2;
+                        vectorB.y = -(pos.y - endA.y) / scale2;
+                    } else {
+                        vectorB.x = (pos.x - origin2.x) / scale2;
+                        vectorB.y = -(pos.y - origin2.y) / scale2;
+                    }
+                }
+
+                render2();
+            }
+        });
+
+        canvas2.addEventListener('mouseup', () => { dragging2 = null; });
+        canvas2.addEventListener('touchend', () => { dragging2 = null; });
+        canvas2.addEventListener('mouseleave', () => { dragging2 = null; });
+
+        // Swap button with animation
+        document.getElementById('swapBtn').addEventListener('click', () => {
+            if (animating) return;
+            animating = true;
+
+            // Simple swap with fade effect
+            canvas2.style.opacity = '0.3';
+
+            setTimeout(() => {
+                swapped = !swapped;
+                render2();
+                canvas2.style.opacity = '1';
+                animating = false;
+            }, 200);
+        });
+
+        render2();
+
+        // Pause simulations when scrolled out of view (performance)
+        const canvasObserver = new IntersectionObserver((entries) => {
+            entries.forEach(entry => {
+                if (!entry.isIntersecting) {
+                    // Pause animations if needed in future
+                }
+            });
+        }, { threshold: 0.1 });
+
+        canvasObserver.observe(canvas1);
+        canvasObserver.observe(canvas2);
+    </script>
+</body>
+</html>

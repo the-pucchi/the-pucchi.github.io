@@ -1,0 +1,268 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Class 11 — The Pucchi</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Segoe UI', system-ui, -apple-system, sans-serif;
+            background: #0f1117;
+            color: #e8eaf0;
+            line-height: 1.8;
+        }
+
+        /* Navigation */
+        nav {
+            padding: 1.5rem 2rem;
+            background: rgba(26, 29, 46, 0.8);
+            backdrop-filter: blur(10px);
+            border-bottom: 1px solid #3d3f5a;
+            display: flex;
+            align-items: center;
+            gap: 2rem;
+        }
+
+        .logo {
+            font-size: 1.5rem;
+            font-weight: bold;
+            color: #00d4ff;
+            text-decoration: none;
+        }
+
+        .nav-link {
+            color: #8b8fa8;
+            text-decoration: none;
+            font-size: 0.95rem;
+            transition: color 0.3s ease;
+        }
+
+        .nav-link:hover {
+            color: #00d4ff;
+        }
+
+        /* Breadcrumb */
+        .breadcrumb {
+            padding: 1.5rem 2rem;
+            font-size: 0.9rem;
+            color: #8b8fa8;
+        }
+
+        .breadcrumb a {
+            color: #8b8fa8;
+            text-decoration: none;
+            transition: color 0.3s ease;
+        }
+
+        .breadcrumb a:hover {
+            color: #00d4ff;
+        }
+
+        .breadcrumb span {
+            margin: 0 0.5rem;
+        }
+
+        /* Main content */
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 2rem;
+        }
+
+        h1 {
+            font-size: 2.5rem;
+            margin-bottom: 1rem;
+        }
+
+        .subtitle {
+            font-size: 1.1rem;
+            color: #8b8fa8;
+            margin-bottom: 3rem;
+        }
+
+        /* Subject grid */
+        .subjects-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+            gap: 1.5rem;
+            margin-top: 2rem;
+        }
+
+        .subject-card {
+            background: #1a1d2e;
+            border-radius: 12px;
+            border: 1px solid #3d3f5a;
+            padding: 2rem;
+            transition: all 0.3s ease;
+            cursor: pointer;
+            text-decoration: none;
+            color: inherit;
+            display: flex;
+            flex-direction: column;
+            gap: 1rem;
+        }
+
+        .subject-card:hover:not(.coming-soon) {
+            transform: translateY(-5px);
+            box-shadow: 0 10px 30px rgba(0, 212, 255, 0.3);
+            border-color: #00d4ff;
+        }
+
+        .subject-card.coming-soon {
+            opacity: 0.5;
+            cursor: not-allowed;
+        }
+
+        .subject-icon {
+            font-size: 3rem;
+            margin-bottom: 0.5rem;
+        }
+
+        .subject-name {
+            font-size: 1.5rem;
+            font-weight: bold;
+            margin-bottom: 0.5rem;
+        }
+
+        .subject-progress {
+            font-size: 0.9rem;
+            color: #8b8fa8;
+        }
+
+        .badge {
+            display: inline-block;
+            padding: 0.3rem 0.8rem;
+            border-radius: 20px;
+            font-size: 0.85rem;
+            margin-top: 0.5rem;
+            background: #3d3f5a;
+            color: #8b8fa8;
+        }
+
+        .badge.active {
+            background: rgba(6, 214, 160, 0.2);
+            color: #06d6a0;
+        }
+
+        /* Fade-in animation */
+        .fade-in {
+            opacity: 0;
+            transform: translateY(30px);
+            transition: opacity 0.8s ease, transform 0.8s ease;
+        }
+
+        .fade-in.visible {
+            opacity: 1;
+            transform: translateY(0);
+        }
+
+        /* Responsive */
+        @media (max-width: 768px) {
+            h1 {
+                font-size: 2rem;
+            }
+
+            .subjects-grid {
+                grid-template-columns: 1fr;
+            }
+        }
+    </style>
+</head>
+<body>
+    <!-- Navigation -->
+    <nav>
+        <a href="index.html" class="logo">The Pucchi</a>
+        <a href="index.html" class="nav-link">All Classes</a>
+    </nav>
+
+    <!-- Breadcrumb -->
+    <div class="breadcrumb">
+        <a href="index.html">Home</a>
+        <span>›</span>
+        <span>Class 11</span>
+    </div>
+
+    <!-- Main content -->
+    <div class="container">
+        <h1 class="fade-in">Class 11</h1>
+        <p class="subtitle fade-in">Choose your subject and dive into interactive chapters</p>
+
+        <div class="subjects-grid fade-in">
+            <a href="class-11-physics.html" class="subject-card">
+                <div class="subject-icon">⚛️</div>
+                <div class="subject-name">Physics</div>
+                <div class="subject-progress">1 of 15 chapters interactive</div>
+                <span class="badge active">Live Now</span>
+            </a>
+
+            <div class="subject-card coming-soon">
+                <div class="subject-icon">🧪</div>
+                <div class="subject-name">Chemistry</div>
+                <div class="subject-progress">0 of 14 chapters interactive</div>
+                <span class="badge">Coming Soon</span>
+            </div>
+
+            <div class="subject-card coming-soon">
+                <div class="subject-icon">📐</div>
+                <div class="subject-name">Mathematics</div>
+                <div class="subject-progress">0 of 16 chapters interactive</div>
+                <span class="badge">Coming Soon</span>
+            </div>
+
+            <div class="subject-card coming-soon">
+                <div class="subject-icon">🧬</div>
+                <div class="subject-name">Biology</div>
+                <div class="subject-progress">0 of 22 chapters interactive</div>
+                <span class="badge">Coming Soon</span>
+            </div>
+
+            <div class="subject-card coming-soon">
+                <div class="subject-icon">📖</div>
+                <div class="subject-name">English</div>
+                <div class="subject-progress">0 chapters interactive</div>
+                <span class="badge">Coming Soon</span>
+            </div>
+
+            <div class="subject-card coming-soon">
+                <div class="subject-icon">🇮🇳</div>
+                <div class="subject-name">Hindi</div>
+                <div class="subject-progress">0 chapters interactive</div>
+                <span class="badge">Coming Soon</span>
+            </div>
+
+            <div class="subject-card coming-soon">
+                <div class="subject-icon">💰</div>
+                <div class="subject-name">Economics</div>
+                <div class="subject-progress">0 chapters interactive</div>
+                <span class="badge">Coming Soon</span>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        // Fade-in animation on scroll
+        const observerOptions = {
+            threshold: 0.1,
+            rootMargin: '0px 0px -50px 0px'
+        };
+
+        const observer = new IntersectionObserver((entries) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    entry.target.classList.add('visible');
+                }
+            });
+        }, observerOptions);
+
+        document.querySelectorAll('.fade-in').forEach(el => {
+            observer.observe(el);
+        });
+    </script>
+</body>
+</html>

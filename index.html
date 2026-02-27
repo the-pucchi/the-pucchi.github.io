@@ -1,0 +1,404 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>The Pucchi — Every NCERT chapter. Interactive. Free. Forever.</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Segoe UI', system-ui, -apple-system, sans-serif;
+            background: #0f1117;
+            color: #e8eaf0;
+            line-height: 1.8;
+            overflow-x: hidden;
+        }
+
+        /* Animated background */
+        #background-canvas {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            z-index: -1;
+            opacity: 0.3;
+        }
+
+        /* Navigation */
+        nav {
+            padding: 1.5rem 2rem;
+            background: rgba(26, 29, 46, 0.8);
+            backdrop-filter: blur(10px);
+            border-bottom: 1px solid #3d3f5a;
+        }
+
+        .logo {
+            font-size: 1.5rem;
+            font-weight: bold;
+            color: #00d4ff;
+            text-decoration: none;
+        }
+
+        /* Hero section */
+        .hero {
+            text-align: center;
+            padding: 6rem 2rem 4rem;
+            max-width: 900px;
+            margin: 0 auto;
+        }
+
+        .hero h1 {
+            font-size: 4rem;
+            font-weight: bold;
+            margin-bottom: 1rem;
+            background: linear-gradient(135deg, #00d4ff, #06d6a0);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+        }
+
+        .hero .tagline {
+            font-size: 1.5rem;
+            margin-bottom: 0.5rem;
+            color: #e8eaf0;
+        }
+
+        .hero .subtext {
+            font-size: 1.1rem;
+            color: #8b8fa8;
+            margin-bottom: 3rem;
+        }
+
+        /* Explainer */
+        .explainer {
+            display: flex;
+            justify-content: center;
+            gap: 2rem;
+            margin: 3rem auto 5rem;
+            max-width: 800px;
+            padding: 0 2rem;
+            flex-wrap: wrap;
+        }
+
+        .explainer-step {
+            flex: 1;
+            min-width: 200px;
+            text-align: center;
+            padding: 1.5rem;
+            background: #1a1d2e;
+            border-radius: 12px;
+            border: 1px solid #3d3f5a;
+        }
+
+        .explainer-step .number {
+            font-size: 2rem;
+            font-weight: bold;
+            color: #00d4ff;
+            margin-bottom: 0.5rem;
+        }
+
+        .explainer-step .text {
+            font-size: 1rem;
+            color: #e8eaf0;
+        }
+
+        /* Class grid */
+        .classes-section {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 2rem;
+        }
+
+        .classes-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(250px, 1fr));
+            gap: 1.5rem;
+            margin-top: 2rem;
+        }
+
+        .class-card {
+            background: #1a1d2e;
+            border-radius: 12px;
+            border: 1px solid #3d3f5a;
+            padding: 2rem;
+            text-align: center;
+            transition: all 0.3s ease;
+            cursor: pointer;
+            text-decoration: none;
+            color: inherit;
+            display: block;
+        }
+
+        .class-card:hover:not(.coming-soon) {
+            transform: translateY(-5px);
+            box-shadow: 0 10px 30px rgba(0, 212, 255, 0.3);
+            border-color: #00d4ff;
+        }
+
+        .class-card.coming-soon {
+            opacity: 0.5;
+            cursor: not-allowed;
+        }
+
+        .class-number {
+            font-size: 2.5rem;
+            font-weight: bold;
+            margin-bottom: 0.5rem;
+            color: #00d4ff;
+        }
+
+        .class-card.coming-soon .class-number {
+            color: #8b8fa8;
+        }
+
+        .class-name {
+            font-size: 1.2rem;
+            margin-bottom: 0.5rem;
+        }
+
+        .badge {
+            display: inline-block;
+            padding: 0.3rem 0.8rem;
+            border-radius: 20px;
+            font-size: 0.85rem;
+            margin-top: 0.5rem;
+            background: #3d3f5a;
+            color: #8b8fa8;
+        }
+
+        .badge.special {
+            background: rgba(255, 209, 102, 0.2);
+            color: #ffd166;
+        }
+
+        .badge.active {
+            background: rgba(6, 214, 160, 0.2);
+            color: #06d6a0;
+        }
+
+        /* Footer */
+        footer {
+            text-align: center;
+            padding: 3rem 2rem;
+            color: #8b8fa8;
+            border-top: 1px solid #3d3f5a;
+            margin-top: 5rem;
+        }
+
+        /* Fade-in animation */
+        .fade-in {
+            opacity: 0;
+            transform: translateY(30px);
+            transition: opacity 0.8s ease, transform 0.8s ease;
+        }
+
+        .fade-in.visible {
+            opacity: 1;
+            transform: translateY(0);
+        }
+
+        /* Responsive */
+        @media (max-width: 768px) {
+            .hero h1 {
+                font-size: 2.5rem;
+            }
+
+            .hero .tagline {
+                font-size: 1.2rem;
+            }
+
+            .explainer {
+                flex-direction: column;
+                gap: 1rem;
+            }
+
+            .classes-grid {
+                grid-template-columns: repeat(auto-fill, minmax(150px, 1fr));
+            }
+        }
+    </style>
+</head>
+<body>
+    <!-- Animated background -->
+    <canvas id="background-canvas"></canvas>
+
+    <!-- Navigation -->
+    <nav>
+        <a href="index.html" class="logo">The Pucchi</a>
+    </nav>
+
+    <!-- Hero -->
+    <section class="hero fade-in">
+        <h1>The Pucchi</h1>
+        <div class="tagline">Every NCERT chapter. Interactive. Free. Forever.</div>
+        <div class="subtext">Stop reading textbooks. Start playing with them.</div>
+    </section>
+
+    <!-- Explainer -->
+    <section class="explainer fade-in">
+        <div class="explainer-step">
+            <div class="number">1</div>
+            <div class="text">Pick your class</div>
+        </div>
+        <div class="explainer-step">
+            <div class="number">2</div>
+            <div class="text">Pick your subject</div>
+        </div>
+        <div class="explainer-step">
+            <div class="number">3</div>
+            <div class="text">Play with the chapter</div>
+        </div>
+    </section>
+
+    <!-- Classes grid -->
+    <section class="classes-section">
+        <div class="classes-grid fade-in">
+            <div class="class-card coming-soon">
+                <div class="class-number">1</div>
+                <div class="class-name">Class 1</div>
+                <span class="badge">Coming Soon</span>
+            </div>
+            <div class="class-card coming-soon">
+                <div class="class-number">2</div>
+                <div class="class-name">Class 2</div>
+                <span class="badge">Coming Soon</span>
+            </div>
+            <div class="class-card coming-soon">
+                <div class="class-number">3</div>
+                <div class="class-name">Class 3</div>
+                <span class="badge">Coming Soon</span>
+            </div>
+            <div class="class-card coming-soon">
+                <div class="class-number">4</div>
+                <div class="class-name">Class 4</div>
+                <span class="badge">Coming Soon</span>
+            </div>
+            <div class="class-card coming-soon">
+                <div class="class-number">5</div>
+                <div class="class-name">Class 5</div>
+                <span class="badge">Coming Soon</span>
+            </div>
+            <div class="class-card coming-soon">
+                <div class="class-number">6</div>
+                <div class="class-name">Class 6</div>
+                <span class="badge">Coming Soon</span>
+            </div>
+            <div class="class-card coming-soon">
+                <div class="class-number">7</div>
+                <div class="class-name">Class 7</div>
+                <span class="badge">Coming Soon</span>
+            </div>
+            <div class="class-card coming-soon">
+                <div class="class-number">8</div>
+                <div class="class-name">Class 8</div>
+                <span class="badge">Coming Soon</span>
+            </div>
+            <div class="class-card coming-soon">
+                <div class="class-number">9</div>
+                <div class="class-name">Class 9</div>
+                <span class="badge">Coming Soon</span>
+            </div>
+            <div class="class-card coming-soon">
+                <div class="class-number">10</div>
+                <div class="class-name">Class 10</div>
+                <span class="badge">Coming Soon</span>
+            </div>
+            <a href="class-11.html" class="class-card">
+                <div class="class-number">11</div>
+                <div class="class-name">Class 11</div>
+                <span class="badge active">Live Now</span>
+                <span class="badge special">JEE / NEET Ready</span>
+            </a>
+            <div class="class-card coming-soon">
+                <div class="class-number">12</div>
+                <div class="class-name">Class 12</div>
+                <span class="badge">Coming Soon</span>
+                <span class="badge special">JEE / NEET Ready</span>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer>
+        Built for every student in India. Free, always.
+    </footer>
+
+    <script>
+        // Background animation - slow floating particles
+        const canvas = document.getElementById('background-canvas');
+        const ctx = canvas.getContext('2d');
+
+        canvas.width = window.innerWidth;
+        canvas.height = window.innerHeight;
+
+        window.addEventListener('resize', () => {
+            canvas.width = window.innerWidth;
+            canvas.height = window.innerHeight;
+        });
+
+        // Create particles
+        const particles = [];
+        const particleCount = 50;
+
+        for (let i = 0; i < particleCount; i++) {
+            particles.push({
+                x: Math.random() * canvas.width,
+                y: Math.random() * canvas.height,
+                vx: (Math.random() - 0.5) * 0.5,
+                vy: (Math.random() - 0.5) * 0.5,
+                radius: Math.random() * 2 + 1
+            });
+        }
+
+        function animate() {
+            ctx.clearRect(0, 0, canvas.width, canvas.height);
+
+            // Draw and update particles
+            particles.forEach(particle => {
+                ctx.beginPath();
+                ctx.arc(particle.x, particle.y, particle.radius, 0, Math.PI * 2);
+                ctx.fillStyle = '#00d4ff';
+                ctx.fill();
+
+                // Update position
+                particle.x += particle.vx;
+                particle.y += particle.vy;
+
+                // Wrap around edges
+                if (particle.x < 0) particle.x = canvas.width;
+                if (particle.x > canvas.width) particle.x = 0;
+                if (particle.y < 0) particle.y = canvas.height;
+                if (particle.y > canvas.height) particle.y = 0;
+            });
+
+            requestAnimationFrame(animate);
+        }
+
+        animate();
+
+        // Fade-in animation on scroll
+        const observerOptions = {
+            threshold: 0.1,
+            rootMargin: '0px 0px -50px 0px'
+        };
+
+        const observer = new IntersectionObserver((entries) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    entry.target.classList.add('visible');
+                }
+            });
+        }, observerOptions);
+
+        document.querySelectorAll('.fade-in').forEach(el => {
+            observer.observe(el);
+        });
+    </script>
+</body>
+</html>
