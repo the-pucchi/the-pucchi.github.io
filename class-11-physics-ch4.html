@@ -156,6 +156,8 @@
             display: block;
             width: 100%;
             max-width: 600px;
+            height: auto;
+            aspect-ratio: 3 / 2;
             margin: 0 auto;
             border-radius: 8px;
             background: #ffffff;
@@ -367,8 +369,16 @@
                 padding: 1rem;
             }
 
-            canvas {
-                height: 300px;
+            .simulation-title {
+                font-size: 1rem;
+            }
+
+            .readout {
+                padding: 0.75rem;
+            }
+
+            .readout-item {
+                font-size: 0.9rem;
             }
 
             .question-options {
@@ -377,6 +387,35 @@
 
             .nav-buttons {
                 flex-direction: column;
+            }
+        }
+
+        /* Extra small devices */
+        @media (max-width: 390px) {
+            .container {
+                padding: 1rem;
+            }
+
+            .section {
+                padding: 1rem;
+            }
+
+            .simulation {
+                padding: 0.75rem;
+            }
+
+            .breadcrumb {
+                padding: 1rem;
+                font-size: 0.85rem;
+            }
+
+            .readout-item {
+                font-size: 0.85rem;
+            }
+
+            .control-btn {
+                padding: 0.7rem 1rem;
+                font-size: 0.9rem;
             }
         }
     </style>
