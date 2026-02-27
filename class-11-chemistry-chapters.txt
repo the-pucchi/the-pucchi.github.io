@@ -1,0 +1,14 @@
+1. Some Basic Concepts of Chemistry - Matter, stoichiometry, mole concept, laws of chemical combination
+2. Structure of Atom - Bohr model, quantum numbers, electron configuration, periodic trends (INTERACTIVE)
+3. Classification of Elements - Periodic table, periodic properties, electron configurations
+4. Chemical Bonding - Ionic, covalent, metallic bonds, Lewis structures, VSEPR theory
+5. States of Matter - Gases, liquids, solids, intermolecular forces
+6. Thermodynamics - First law, enthalpy, Hess's law, heat capacity
+7. Equilibrium - Chemical equilibrium, Le Chatelier's principle, equilibrium constant
+8. Redox Reactions - Oxidation numbers, balancing redox reactions, electrochemistry basics
+9. Hydrogen - Properties, isotopes, compounds of hydrogen
+10. s-Block Elements - Alkali and alkaline earth metals, their compounds
+11. p-Block Elements - Group 13 and 14 elements, their properties
+12. Organic Chemistry Basics - Hybridization, isomerism, IUPAC nomenclature
+13. Hydrocarbons - Alkanes, alkenes, alkynes, aromatic compounds
+14. Environmental Chemistry - Pollution, greenhouse effect, acid rain

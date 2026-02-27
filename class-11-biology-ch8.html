@@ -1,0 +1,1051 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Cell: The Unit of Life — Class 11 Biology — The Pucchi</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Segoe UI', system-ui, -apple-system, sans-serif;
+            background: #f8f9fa;
+            color: #1a1d2e;
+            line-height: 1.8;
+        }
+
+        /* Progress bar */
+        .progress-bar {
+            position: fixed;
+            top: 0;
+            left: 0;
+            height: 3px;
+            background: linear-gradient(90deg, #00d4ff, #06d6a0);
+            z-index: 1000;
+            transition: width 0.1s ease;
+        }
+
+        /* Navigation */
+        nav {
+            padding: 1.5rem 2rem;
+            background: rgba(255, 255, 255, 0.9);
+            backdrop-filter: blur(10px);
+            border-bottom: 1px solid #e2e8f0;
+            display: flex;
+            align-items: center;
+            gap: 2rem;
+            position: sticky;
+            top: 0;
+            z-index: 100;
+        }
+
+        .logo {
+            font-size: 1.5rem;
+            font-weight: bold;
+            color: #0891b2;
+            text-decoration: none;
+        }
+
+        .nav-link {
+            color: #6b7280;
+            text-decoration: none;
+            font-size: 0.95rem;
+            transition: color 0.3s ease;
+        }
+
+        .nav-link:hover {
+            color: #0891b2;
+        }
+
+        /* Breadcrumb */
+        .breadcrumb {
+            padding: 1.5rem 2rem;
+            font-size: 0.9rem;
+            color: #6b7280;
+        }
+
+        .breadcrumb a {
+            color: #6b7280;
+            text-decoration: none;
+            transition: color 0.3s ease;
+        }
+
+        .breadcrumb a:hover {
+            color: #0891b2;
+        }
+
+        .breadcrumb span {
+            margin: 0 0.5rem;
+        }
+
+        /* Main content */
+        .container {
+            max-width: 900px;
+            margin: 0 auto;
+            padding: 2rem;
+        }
+
+        h1 {
+            font-size: 2.5rem;
+            margin-bottom: 1rem;
+        }
+
+        .intro {
+            font-size: 1.1rem;
+            color: #1a1d2e;
+            margin-bottom: 1rem;
+        }
+
+        /* Section styling */
+        .section {
+            margin-bottom: 4rem;
+            padding: 2rem;
+            background: #ffffff;
+            border-radius: 12px;
+            border: 1px solid #e2e8f0;
+            box-shadow: 0 2px 8px rgba(0, 0, 0, 0.05);
+        }
+
+        h2 {
+            font-size: 1.8rem;
+            margin-bottom: 1.5rem;
+            padding-left: 1rem;
+            border-left: 3px solid #0891b2;
+        }
+
+        .section p {
+            font-size: 1.1rem;
+            margin-bottom: 1rem;
+        }
+
+        .section ul {
+            margin-left: 2rem;
+            margin-bottom: 1rem;
+        }
+
+        .section li {
+            margin-bottom: 0.5rem;
+            font-size: 1.05rem;
+        }
+
+        /* Canvas simulation */
+        .simulation {
+            margin: 2rem 0;
+            padding: 2rem;
+            background: #f0f4f8;
+            border-radius: 12px;
+            border: 1px solid #cbd5e1;
+        }
+
+        .simulation-title {
+            font-size: 1.2rem;
+            font-weight: bold;
+            margin-bottom: 1rem;
+            color: #0891b2;
+        }
+
+        canvas {
+            display: block;
+            width: 100%;
+            max-width: 600px;
+            height: auto;
+            aspect-ratio: 3 / 2;
+            margin: 0 auto;
+            border-radius: 8px;
+            background: #ffffff;
+            border: 2px solid #e2e8f0;
+            cursor: pointer;
+            touch-action: none;
+        }
+
+        .readout {
+            margin-top: 1.5rem;
+            padding: 1rem;
+            background: #e0f2fe;
+            border-radius: 8px;
+            border: 1px solid #7dd3fc;
+        }
+
+        .readout-item {
+            font-size: 1rem;
+            margin-bottom: 0.5rem;
+            font-family: 'Courier New', monospace;
+        }
+
+        .readout-item:last-child {
+            margin-bottom: 0;
+        }
+
+        .readout-label {
+            color: #475569;
+        }
+
+        .readout-value {
+            color: #0891b2;
+            font-weight: bold;
+        }
+
+        /* Callout box */
+        .callout {
+            margin: 1.5rem 0;
+            padding: 1rem 1.5rem;
+            background: #fef3c7;
+            border-left: 3px solid #f59e0b;
+            border-radius: 8px;
+        }
+
+        .callout-title {
+            font-weight: bold;
+            color: #d97706;
+            margin-bottom: 0.5rem;
+        }
+
+        /* Control button */
+        .control-btn {
+            padding: 0.8rem 1.5rem;
+            background: linear-gradient(135deg, #0891b2, #059669);
+            border: none;
+            border-radius: 8px;
+            color: #ffffff;
+            font-weight: bold;
+            cursor: pointer;
+            font-size: 1rem;
+            transition: transform 0.2s ease, box-shadow 0.2s ease;
+            margin-top: 1rem;
+            margin-right: 0.5rem;
+        }
+
+        .control-btn:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 5px 20px rgba(8, 145, 178, 0.4);
+        }
+
+        .control-btn:active {
+            transform: translateY(0);
+        }
+
+        /* Organelle info box */
+        .organelle-info {
+            margin-top: 1rem;
+            padding: 1rem;
+            background: #d1fae5;
+            border-radius: 8px;
+            border: 1px solid #059669;
+            display: none;
+        }
+
+        .organelle-info.show {
+            display: block;
+        }
+
+        /* Footer navigation */
+        .chapter-nav {
+            margin-top: 4rem;
+            padding: 2rem;
+            background: #ffffff;
+            border-radius: 12px;
+            border: 1px solid #e2e8f0;
+            box-shadow: 0 2px 8px rgba(0, 0, 0, 0.05);
+        }
+
+        .coming-soon-text {
+            color: #6b7280;
+            margin-bottom: 1rem;
+        }
+
+        .back-link {
+            display: inline-block;
+            margin-top: 1rem;
+            color: #0891b2;
+            text-decoration: none;
+            transition: color 0.3s ease;
+        }
+
+        .back-link:hover {
+            color: #06d6a0;
+        }
+
+        /* Fade-in animation */
+        .fade-in {
+            opacity: 0;
+            transform: translateY(30px);
+            transition: opacity 0.8s ease, transform 0.8s ease;
+        }
+
+        .fade-in.visible {
+            opacity: 1;
+            transform: translateY(0);
+        }
+
+        /* Responsive */
+        @media (max-width: 768px) {
+            h1 {
+                font-size: 2rem;
+            }
+
+            .section {
+                padding: 1.5rem;
+            }
+
+            .simulation {
+                padding: 1rem;
+            }
+
+            .simulation-title {
+                font-size: 1rem;
+            }
+
+            .readout {
+                padding: 0.75rem;
+            }
+
+            .readout-item {
+                font-size: 0.9rem;
+            }
+        }
+
+        @media (max-width: 390px) {
+            .container {
+                padding: 1rem;
+            }
+
+            .section {
+                padding: 1rem;
+            }
+
+            .simulation {
+                padding: 0.75rem;
+            }
+
+            .breadcrumb {
+                padding: 1rem;
+                font-size: 0.85rem;
+            }
+
+            .readout-item {
+                font-size: 0.85rem;
+            }
+
+            .control-btn {
+                padding: 0.7rem 1rem;
+                font-size: 0.9rem;
+            }
+        }
+    </style>
+</head>
+<body>
+    <!-- Progress bar -->
+    <div class="progress-bar" id="progressBar"></div>
+
+    <!-- Navigation -->
+    <nav>
+        <a href="index.html" class="logo">The Pucchi</a>
+        <a href="index.html" class="nav-link">All Classes</a>
+        <a href="class-11.html" class="nav-link">Class 11</a>
+    </nav>
+
+    <!-- Breadcrumb -->
+    <div class="breadcrumb">
+        <a href="index.html">Home</a>
+        <span>›</span>
+        <a href="class-11.html">Class 11</a>
+        <span>›</span>
+        <a href="class-11-biology.html">Biology</a>
+        <span>›</span>
+        <span>Cell: The Unit of Life</span>
+    </div>
+
+    <!-- Main content -->
+    <div class="container">
+        <h1 class="fade-in">Cell: The Unit of Life</h1>
+        <p class="intro fade-in">Chapter 8 — The smallest living thing</p>
+
+        <!-- Section 1: Cell Structure -->
+        <section class="section fade-in">
+            <h2>1. Cell Structure — A Microscopic City</h2>
+
+            <p>
+                All living things are made of <strong>cells</strong> — the basic unit of life. Think of a cell as a microscopic factory with different departments (organelles), each doing a specific job. Some organisms are single cells (bacteria, amoeba), while others like you are made of trillions of cells working together.
+            </p>
+
+            <p><strong>Two types of cells:</strong></p>
+            <ul>
+                <li><strong>Prokaryotic:</strong> Simple, no nucleus (bacteria, archaea). DNA floats freely in cytoplasm.</li>
+                <li><strong>Eukaryotic:</strong> Complex, has nucleus (plants, animals, fungi). DNA is enclosed in nucleus.</li>
+            </ul>
+
+            <p><strong>Key organelles in eukaryotic cells:</strong></p>
+            <ul>
+                <li><strong>Nucleus:</strong> Control center, contains DNA (genetic instructions)</li>
+                <li><strong>Mitochondria:</strong> Powerhouse, produces ATP (cellular energy)</li>
+                <li><strong>Ribosomes:</strong> Protein factories, reads mRNA and builds proteins</li>
+                <li><strong>Endoplasmic Reticulum (ER):</strong> Highway for transporting materials</li>
+                <li><strong>Golgi Apparatus:</strong> Post office, packages and ships proteins</li>
+                <li><strong>Lysosomes:</strong> Recycling center, breaks down waste</li>
+                <li><strong>Cell Membrane:</strong> Gatekeeper, controls what enters/exits</li>
+                <li><strong>Chloroplasts (plants only):</strong> Solar panels, photosynthesis happens here</li>
+            </ul>
+
+            <!-- Simulation 1: Cell Structure -->
+            <div class="simulation">
+                <div class="simulation-title">Interactive: Animal Cell Explorer</div>
+                <p style="font-size: 0.95rem; color: #6b7280; margin-bottom: 1rem;">
+                    Click on different organelles to learn about their functions. Each part of the cell has a crucial role in keeping the cell alive.
+                </p>
+                <canvas id="cellCanvas" width="600" height="400"></canvas>
+                <div class="organelle-info" id="organelleInfo">
+                    <strong id="organelleName"></strong>
+                    <p id="organelleDesc"></p>
+                </div>
+                <div class="readout">
+                    <div class="readout-item">
+                        <span class="readout-label">Cell type:</span>
+                        <span class="readout-value">Animal Cell (Eukaryotic)</span>
+                    </div>
+                    <div class="readout-item">
+                        <span class="readout-label">Size:</span>
+                        <span class="readout-value">10-30 micrometers (μm)</span>
+                    </div>
+                    <div class="readout-item">
+                        <span class="readout-label">Selected:</span>
+                        <span class="readout-value" id="selectedOrganelle">None (click to explore)</span>
+                    </div>
+                </div>
+            </div>
+
+            <div class="callout">
+                <div class="callout-title">💡 Why this matters</div>
+                <p>
+                    Every cell is a complete living system. Your body has over 200 different cell types (nerve cells, muscle cells, blood cells), but they all share the same basic organelles. Understanding cells is understanding life itself — from how we breathe to how we think.
+                </p>
+            </div>
+        </section>
+
+        <!-- Section 2: Osmosis -->
+        <section class="section fade-in">
+            <h2>2. Osmosis — Water on the Move</h2>
+
+            <p>
+                <strong>Osmosis</strong> is the movement of water across a semi-permeable membrane from an area of low solute concentration (more water) to high solute concentration (less water). It's passive transport — no energy required. Water just wants to balance things out.
+            </p>
+
+            <p><strong>Three scenarios:</strong></p>
+            <ul>
+                <li><strong>Hypertonic:</strong> Outside has more solutes than inside → water leaves cell → cell shrinks</li>
+                <li><strong>Hypotonic:</strong> Outside has fewer solutes than inside → water enters cell → cell swells (may burst)</li>
+                <li><strong>Isotonic:</strong> Equal solute concentration → no net water movement → cell stays same size</li>
+            </ul>
+
+            <p>
+                This is why cells in your body need the right environment. Red blood cells in pure water will burst (lysis). Red blood cells in salty water will shrivel (crenation). But in blood plasma (isotonic), they're perfect.
+            </p>
+
+            <!-- Simulation 2: Osmosis -->
+            <div class="simulation">
+                <div class="simulation-title">Interactive: Osmosis Simulator</div>
+                <p style="font-size: 0.95rem; color: #6b7280; margin-bottom: 1rem;">
+                    Change the external concentration and watch water move in or out of the cell. Blue dots = water molecules, red dots = solute particles. The membrane is semi-permeable (water passes, solute doesn't).
+                </p>
+                <canvas id="osmosisCanvas" width="600" height="400"></canvas>
+                <div class="readout">
+                    <div style="display: flex; gap: 1rem; margin-bottom: 1rem; flex-wrap: wrap;">
+                        <div style="flex: 1; min-width: 180px;">
+                            <label style="font-size: 0.9rem; color: #475569;">External concentration:</label>
+                            <input type="range" id="concSlider" min="1" max="9" value="5" style="width: 100%;">
+                            <span id="concValue" style="color: #0891b2; font-weight: bold;">5%</span>
+                        </div>
+                    </div>
+                    <div class="readout-item">
+                        <span class="readout-label">Internal concentration:</span>
+                        <span class="readout-value">5% (fixed)</span>
+                    </div>
+                    <div class="readout-item">
+                        <span class="readout-label">Solution type:</span>
+                        <span class="readout-value" id="solutionType">Isotonic</span>
+                    </div>
+                    <div class="readout-item">
+                        <span class="readout-label">Cell size:</span>
+                        <span class="readout-value" id="cellSize">Normal</span>
+                    </div>
+                    <div class="readout-item">
+                        <span class="readout-label">Water flow:</span>
+                        <span class="readout-value" id="waterFlow">No net movement</span>
+                    </div>
+                </div>
+            </div>
+
+            <div class="callout">
+                <div class="callout-title">💡 Did you know?</div>
+                <p>
+                    This is why you can't drink seawater! Seawater is hypertonic to your cells. Drinking it would pull water OUT of your cells into your intestines, making you more dehydrated. Plants use osmosis to draw water from soil — root cells have high solute concentration, creating osmotic pressure.
+                </p>
+            </div>
+        </section>
+
+        <!-- Section 3: Cell Membrane Transport -->
+        <section class="section fade-in">
+            <h2>3. Cell Membrane Transport — The Gatekeeper</h2>
+
+            <p>
+                The <strong>cell membrane</strong> is selectively permeable — it controls what goes in and out. It's not a solid wall; it's a flexible bilayer of phospholipids with embedded proteins. Think of it as a nightclub bouncer: some things get in for free, some need help, some are banned.
+            </p>
+
+            <p><strong>Types of transport:</strong></p>
+            <ul>
+                <li><strong>Passive Transport:</strong> No energy required, moves down concentration gradient
+                    <ul>
+                        <li>Simple diffusion: Small nonpolar molecules (O₂, CO₂) slip through directly</li>
+                        <li>Facilitated diffusion: Larger or polar molecules (glucose, ions) use protein channels</li>
+                        <li>Osmosis: Water moves through aquaporins (water channels)</li>
+                    </ul>
+                </li>
+                <li><strong>Active Transport:</strong> Requires ATP energy, moves against concentration gradient
+                    <ul>
+                        <li>Protein pumps actively push molecules uphill (e.g., sodium-potassium pump)</li>
+                        <li>Endocytosis: Cell engulfs large particles (eating)</li>
+                        <li>Exocytosis: Cell spits out waste or secretes products</li>
+                    </ul>
+                </li>
+            </ul>
+
+            <!-- Simulation 3: Transport -->
+            <div class="simulation">
+                <div class="simulation-title">Interactive: Membrane Transport</div>
+                <p style="font-size: 0.95rem; color: #6b7280; margin-bottom: 1rem;">
+                    Watch molecules move across the membrane. Green = passive (down gradient, free), Red = active (up gradient, costs energy). The membrane is the vertical line in the middle.
+                </p>
+                <canvas id="transportCanvas" width="600" height="400"></canvas>
+                <div class="readout">
+                    <div class="readout-item">
+                        <span class="readout-label">Passive transport:</span>
+                        <span class="readout-value" id="passiveCount">0</span>
+                        <span class="readout-label"> molecules</span>
+                    </div>
+                    <div class="readout-item">
+                        <span class="readout-label">Active transport:</span>
+                        <span class="readout-value" id="activeCount">0</span>
+                        <span class="readout-label"> molecules</span>
+                    </div>
+                    <div class="readout-item">
+                        <span class="readout-label">ATP consumed:</span>
+                        <span class="readout-value" id="atpUsed">0</span>
+                    </div>
+                </div>
+                <button class="control-btn" id="addPassive">Add Passive Molecule</button>
+                <button class="control-btn" id="addActive">Add Active Molecule</button>
+                <button class="control-btn" id="resetTransport">Reset</button>
+            </div>
+
+            <div class="callout">
+                <div class="callout-title">💡 Why this matters</div>
+                <p>
+                    Your neurons (nerve cells) use active transport constantly. The sodium-potassium pump maintains electrical charge across the membrane, enabling nerve signals. About 20-25% of your resting metabolism goes to running these pumps! Without active transport, your brain couldn't think and your muscles couldn't move.
+                </p>
+            </div>
+        </section>
+
+        <!-- Footer navigation -->
+        <div class="chapter-nav fade-in">
+            <p class="coming-soon-text">
+                <strong>Next up:</strong> Cell Division, Photosynthesis, Respiration
+            </p>
+            <a href="class-11-biology.html" class="back-link">← Back to all chapters</a>
+        </div>
+    </div>
+
+    <script>
+        // Progress bar
+        window.addEventListener('scroll', () => {
+            const scrollTop = window.scrollY;
+            const docHeight = document.documentElement.scrollHeight - window.innerHeight;
+            const progress = (scrollTop / docHeight) * 100;
+            document.getElementById('progressBar').style.width = progress + '%';
+        });
+
+        // Fade-in animation
+        const observerOptions = {
+            threshold: 0.1,
+            rootMargin: '0px 0px -50px 0px'
+        };
+
+        const observer = new IntersectionObserver((entries) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    entry.target.classList.add('visible');
+                }
+            });
+        }, observerOptions);
+
+        document.querySelectorAll('.fade-in').forEach(el => {
+            observer.observe(el);
+        });
+
+        const dpr = window.devicePixelRatio || 1;
+
+        // ========== SIMULATION 1: Cell Structure ==========
+        const canvas1 = document.getElementById('cellCanvas');
+        const ctx1 = canvas1.getContext('2d');
+
+        canvas1.width = 600 * dpr;
+        canvas1.height = 400 * dpr;
+        canvas1.style.width = '600px';
+        canvas1.style.height = '400px';
+        ctx1.scale(dpr, dpr);
+
+        const organelles = [
+            {
+                name: 'Nucleus',
+                x: 300,
+                y: 200,
+                radius: 50,
+                color: '#8b5cf6',
+                desc: 'Control center containing DNA. Regulates all cell activities and stores genetic information.'
+            },
+            {
+                name: 'Mitochondria',
+                x: 200,
+                y: 150,
+                width: 60,
+                height: 30,
+                color: '#dc2626',
+                desc: 'Powerhouse of the cell. Produces ATP through cellular respiration, providing energy for all cell processes.'
+            },
+            {
+                name: 'Mitochondria',
+                x: 400,
+                y: 250,
+                width: 60,
+                height: 30,
+                color: '#dc2626',
+                desc: 'Powerhouse of the cell. Produces ATP through cellular respiration, providing energy for all cell processes.'
+            },
+            {
+                name: 'Ribosome',
+                x: 220,
+                y: 260,
+                radius: 8,
+                color: '#2563eb',
+                desc: 'Protein factories. Read mRNA and assemble amino acids into proteins.'
+            },
+            {
+                name: 'Ribosome',
+                x: 380,
+                y: 140,
+                radius: 8,
+                color: '#2563eb',
+                desc: 'Protein factories. Read mRNA and assemble amino acids into proteins.'
+            },
+            {
+                name: 'Golgi Apparatus',
+                x: 180,
+                y: 300,
+                width: 50,
+                height: 40,
+                color: '#f59e0b',
+                desc: 'Post office of the cell. Modifies, packages, and ships proteins to their destinations.'
+            },
+            {
+                name: 'Lysosome',
+                x: 420,
+                y: 180,
+                radius: 15,
+                color: '#10b981',
+                desc: 'Recycling center. Contains digestive enzymes that break down waste materials and old organelles.'
+            }
+        ];
+
+        let selectedOrganelle = null;
+
+        function drawCell() {
+            ctx1.clearRect(0, 0, 600, 400);
+
+            // Cell membrane
+            ctx1.strokeStyle = '#0891b2';
+            ctx1.lineWidth = 4;
+            ctx1.beginPath();
+            ctx1.ellipse(300, 200, 250, 150, 0, 0, Math.PI * 2);
+            ctx1.stroke();
+
+            // Cytoplasm
+            ctx1.fillStyle = 'rgba(236, 253, 245, 0.3)';
+            ctx1.beginPath();
+            ctx1.ellipse(300, 200, 250, 150, 0, 0, Math.PI * 2);
+            ctx1.fill();
+
+            // Draw organelles
+            organelles.forEach(org => {
+                ctx1.fillStyle = org.color;
+                ctx1.strokeStyle = org === selectedOrganelle ? '#1a1d2e' : org.color;
+                ctx1.lineWidth = org === selectedOrganelle ? 3 : 1;
+
+                if (org.radius) {
+                    // Circle
+                    ctx1.beginPath();
+                    ctx1.arc(org.x, org.y, org.radius, 0, Math.PI * 2);
+                    ctx1.fill();
+                    ctx1.stroke();
+                } else {
+                    // Rectangle (mitochondria, golgi)
+                    ctx1.fillRect(org.x - org.width / 2, org.y - org.height / 2, org.width, org.height);
+                    ctx1.strokeRect(org.x - org.width / 2, org.y - org.height / 2, org.width, org.height);
+                }
+
+                // Label
+                if (org === selectedOrganelle) {
+                    ctx1.fillStyle = '#1a1d2e';
+                    ctx1.font = 'bold 12px sans-serif';
+                    ctx1.textAlign = 'center';
+                    ctx1.fillText(org.name, org.x, org.y - (org.radius || org.height / 2) - 10);
+                }
+            });
+
+            // Cell membrane label
+            ctx1.fillStyle = '#0891b2';
+            ctx1.font = 'bold 14px sans-serif';
+            ctx1.fillText('Cell Membrane', 300, 370);
+        }
+
+        canvas1.addEventListener('click', (e) => {
+            const rect = canvas1.getBoundingClientRect();
+            const x = (e.clientX - rect.left) * (600 / rect.width);
+            const y = (e.clientY - rect.top) * (400 / rect.height);
+
+            selectedOrganelle = null;
+
+            for (const org of organelles) {
+                let hit = false;
+                if (org.radius) {
+                    const dist = Math.sqrt((x - org.x) ** 2 + (y - org.y) ** 2);
+                    hit = dist < org.radius;
+                } else {
+                    hit = x > org.x - org.width / 2 && x < org.x + org.width / 2 &&
+                          y > org.y - org.height / 2 && y < org.y + org.height / 2;
+                }
+
+                if (hit) {
+                    selectedOrganelle = org;
+                    document.getElementById('organelleName').textContent = org.name;
+                    document.getElementById('organelleDesc').textContent = org.desc;
+                    document.getElementById('organelleInfo').classList.add('show');
+                    document.getElementById('selectedOrganelle').textContent = org.name;
+                    break;
+                }
+            }
+
+            if (!selectedOrganelle) {
+                document.getElementById('organelleInfo').classList.remove('show');
+                document.getElementById('selectedOrganelle').textContent = 'None (click to explore)';
+            }
+
+            drawCell();
+        });
+
+        drawCell();
+
+        // ========== SIMULATION 2: Osmosis ==========
+        const canvas2 = document.getElementById('osmosisCanvas');
+        const ctx2 = canvas2.getContext('2d');
+
+        canvas2.width = 600 * dpr;
+        canvas2.height = 400 * dpr;
+        canvas2.style.width = '600px';
+        canvas2.style.height = '400px';
+        ctx2.scale(dpr, dpr);
+
+        let externalConc = 5;
+        const internalConc = 5;
+        let cellRadius = 80;
+        let waterParticles = [];
+        let soluteParticles = [];
+
+        function initParticles() {
+            waterParticles = [];
+            soluteParticles = [];
+
+            // Water inside cell (inversely proportional to internal concentration)
+            for (let i = 0; i < 50; i++) {
+                waterParticles.push({
+                    x: 300 + (Math.random() - 0.5) * cellRadius * 1.5,
+                    y: 200 + (Math.random() - 0.5) * cellRadius * 1.5,
+                    vx: (Math.random() - 0.5) * 0.5,
+                    vy: (Math.random() - 0.5) * 0.5,
+                    inside: true
+                });
+            }
+
+            // Water outside cell
+            for (let i = 0; i < 80; i++) {
+                let x, y;
+                do {
+                    x = Math.random() * 600;
+                    y = Math.random() * 400;
+                } while (Math.sqrt((x - 300) ** 2 + (y - 200) ** 2) < cellRadius + 20);
+
+                waterParticles.push({
+                    x, y,
+                    vx: (Math.random() - 0.5) * 0.5,
+                    vy: (Math.random() - 0.5) * 0.5,
+                    inside: false
+                });
+            }
+
+            // Solute particles (proportional to concentration)
+            for (let i = 0; i < externalConc * 3; i++) {
+                let x, y;
+                do {
+                    x = Math.random() * 600;
+                    y = Math.random() * 400;
+                } while (Math.sqrt((x - 300) ** 2 + (y - 200) ** 2) < cellRadius + 20);
+
+                soluteParticles.push({
+                    x, y,
+                    vx: (Math.random() - 0.5) * 0.3,
+                    vy: (Math.random() - 0.5) * 0.3
+                });
+            }
+        }
+
+        function updateOsmosis() {
+            // Adjust cell size based on concentration difference
+            if (externalConc > internalConc) {
+                cellRadius = Math.max(60, cellRadius - 0.2); // Hypertonic - shrink
+            } else if (externalConc < internalConc) {
+                cellRadius = Math.min(100, cellRadius + 0.2); // Hypotonic - swell
+            } else {
+                // Isotonic - move toward normal
+                if (cellRadius < 80) cellRadius += 0.1;
+                if (cellRadius > 80) cellRadius -= 0.1;
+            }
+
+            // Update water particles
+            waterParticles.forEach(p => {
+                p.x += p.vx;
+                p.y += p.vy;
+
+                // Bounce off walls
+                if (p.x < 0 || p.x > 600) p.vx *= -1;
+                if (p.y < 0 || p.y > 400) p.vy *= -1;
+
+                const dist = Math.sqrt((p.x - 300) ** 2 + (p.y - 200) ** 2);
+
+                // Cross membrane (osmosis)
+                if (Math.abs(dist - cellRadius) < 5) {
+                    if (externalConc > internalConc && p.inside) {
+                        // Water leaves cell
+                        if (Math.random() < 0.02) p.inside = false;
+                    } else if (externalConc < internalConc && !p.inside) {
+                        // Water enters cell
+                        if (Math.random() < 0.02) p.inside = true;
+                    }
+                }
+
+                // Bounce off membrane
+                if (dist < cellRadius - 5 && !p.inside) {
+                    const angle = Math.atan2(p.y - 200, p.x - 300);
+                    p.vx = Math.cos(angle) * 0.5;
+                    p.vy = Math.sin(angle) * 0.5;
+                }
+            });
+
+            // Update solute particles (can't cross membrane)
+            soluteParticles.forEach(p => {
+                p.x += p.vx;
+                p.y += p.vy;
+
+                if (p.x < 0 || p.x > 600) p.vx *= -1;
+                if (p.y < 0 || p.y > 400) p.vy *= -1;
+
+                const dist = Math.sqrt((p.x - 300) ** 2 + (p.y - 200) ** 2);
+                if (dist < cellRadius + 5) {
+                    const angle = Math.atan2(p.y - 200, p.x - 300);
+                    p.vx = Math.cos(angle) * 0.5;
+                    p.vy = Math.sin(angle) * 0.5;
+                }
+            });
+        }
+
+        function drawOsmosis() {
+            ctx2.clearRect(0, 0, 600, 400);
+
+            // Draw cell membrane
+            ctx2.strokeStyle = '#0891b2';
+            ctx2.lineWidth = 4;
+            ctx2.beginPath();
+            ctx2.arc(300, 200, cellRadius, 0, Math.PI * 2);
+            ctx2.stroke();
+
+            // Draw water particles (blue)
+            waterParticles.forEach(p => {
+                ctx2.fillStyle = '#3b82f6';
+                ctx2.beginPath();
+                ctx2.arc(p.x, p.y, 3, 0, Math.PI * 2);
+                ctx2.fill();
+            });
+
+            // Draw solute particles (red)
+            soluteParticles.forEach(p => {
+                ctx2.fillStyle = '#dc2626';
+                ctx2.beginPath();
+                ctx2.arc(p.x, p.y, 4, 0, Math.PI * 2);
+                ctx2.fill();
+            });
+
+            updateOsmosis();
+            updateOsmosisReadout();
+            requestAnimationFrame(drawOsmosis);
+        }
+
+        function updateOsmosisReadout() {
+            let type = 'Isotonic';
+            let sizeText = 'Normal';
+            let flowText = 'No net movement';
+
+            if (externalConc > internalConc) {
+                type = 'Hypertonic';
+                sizeText = 'Shrinking';
+                flowText = 'Water leaving cell';
+            } else if (externalConc < internalConc) {
+                type = 'Hypotonic';
+                sizeText = 'Swelling';
+                flowText = 'Water entering cell';
+            }
+
+            document.getElementById('solutionType').textContent = type;
+            document.getElementById('cellSize').textContent = sizeText;
+            document.getElementById('waterFlow').textContent = flowText;
+        }
+
+        document.getElementById('concSlider').addEventListener('input', (e) => {
+            externalConc = parseInt(e.target.value);
+            document.getElementById('concValue').textContent = externalConc + '%';
+            initParticles();
+        });
+
+        initParticles();
+        drawOsmosis();
+
+        // ========== SIMULATION 3: Transport ==========
+        const canvas3 = document.getElementById('transportCanvas');
+        const ctx3 = canvas3.getContext('2d');
+
+        canvas3.width = 600 * dpr;
+        canvas3.height = 400 * dpr;
+        canvas3.style.width = '600px';
+        canvas3.style.height = '400px';
+        ctx3.scale(dpr, dpr);
+
+        let molecules = [];
+        let passiveCount = 0;
+        let activeCount = 0;
+        let atpUsed = 0;
+
+        function addMolecule(type) {
+            molecules.push({
+                x: type === 'passive' ? 50 : 550,
+                y: Math.random() * 300 + 50,
+                targetX: type === 'passive' ? 550 : 50,
+                type: type,
+                speed: type === 'passive' ? 2 : 1,
+                complete: false
+            });
+        }
+
+        function drawTransport() {
+            ctx3.clearRect(0, 0, 600, 400);
+
+            // Draw membrane
+            ctx3.strokeStyle = '#0891b2';
+            ctx3.lineWidth = 6;
+            ctx3.beginPath();
+            ctx3.moveTo(300, 0);
+            ctx3.lineTo(300, 400);
+            ctx3.stroke();
+
+            // Labels
+            ctx3.fillStyle = '#6b7280';
+            ctx3.font = 'bold 16px sans-serif';
+            ctx3.fillText('Outside Cell', 80, 30);
+            ctx3.fillText('Inside Cell', 420, 30);
+
+            // Concentration gradient arrows
+            ctx3.fillStyle = '#10b981';
+            ctx3.font = '12px sans-serif';
+            ctx3.fillText('High [●]', 50, 380);
+            ctx3.fillStyle = '#dc2626';
+            ctx3.fillText('Low [●]', 520, 380);
+
+            // Draw molecules
+            molecules.forEach(mol => {
+                if (!mol.complete) {
+                    // Move molecule
+                    if (mol.type === 'passive') {
+                        mol.x += mol.speed;
+                        if (mol.x >= mol.targetX) {
+                            mol.complete = true;
+                            passiveCount++;
+                        }
+                    } else {
+                        mol.x -= mol.speed;
+                        if (mol.x <= mol.targetX) {
+                            mol.complete = true;
+                            activeCount++;
+                            atpUsed++;
+                        }
+                    }
+
+                    // Draw molecule
+                    ctx3.fillStyle = mol.type === 'passive' ? '#10b981' : '#dc2626';
+                    ctx3.beginPath();
+                    ctx3.arc(mol.x, mol.y, 8, 0, Math.PI * 2);
+                    ctx3.fill();
+
+                    // Arrow
+                    const arrowDir = mol.type === 'passive' ? 1 : -1;
+                    ctx3.strokeStyle = mol.type === 'passive' ? '#10b981' : '#dc2626';
+                    ctx3.lineWidth = 2;
+                    ctx3.beginPath();
+                    ctx3.moveTo(mol.x + arrowDir * 12, mol.y);
+                    ctx3.lineTo(mol.x + arrowDir * 20, mol.y);
+                    ctx3.lineTo(mol.x + arrowDir * 17, mol.y - 4);
+                    ctx3.moveTo(mol.x + arrowDir * 20, mol.y);
+                    ctx3.lineTo(mol.x + arrowDir * 17, mol.y + 4);
+                    ctx3.stroke();
+                }
+            });
+
+            // Remove completed molecules
+            molecules = molecules.filter(m => !m.complete);
+
+            updateTransportReadout();
+            requestAnimationFrame(drawTransport);
+        }
+
+        function updateTransportReadout() {
+            document.getElementById('passiveCount').textContent = passiveCount;
+            document.getElementById('activeCount').textContent = activeCount;
+            document.getElementById('atpUsed').textContent = atpUsed;
+        }
+
+        document.getElementById('addPassive').addEventListener('click', () => {
+            addMolecule('passive');
+        });
+
+        document.getElementById('addActive').addEventListener('click', () => {
+            addMolecule('active');
+        });
+
+        document.getElementById('resetTransport').addEventListener('click', () => {
+            molecules = [];
+            passiveCount = 0;
+            activeCount = 0;
+            atpUsed = 0;
+        });
+
+        drawTransport();
+    </script>
+</body>
+</html>

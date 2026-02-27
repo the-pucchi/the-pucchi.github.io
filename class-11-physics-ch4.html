@@ -573,10 +573,139 @@
             </div>
         </section>
 
+        <!-- Section 3: Resolution of Vectors -->
+        <section class="section fade-in">
+            <h2>3. Resolution of Vectors — Breaking Them Down</h2>
+
+            <p>
+                Any vector can be split into two perpendicular components — usually along the x and y axes. This is called <strong>resolution</strong>, and it's incredibly useful. Why? Because it lets us treat 2D motion as two separate 1D problems.
+            </p>
+
+            <p>
+                For a vector <strong>A</strong> at angle θ from the x-axis:
+            </p>
+            <ul>
+                <li><strong>Horizontal component:</strong> A<sub>x</sub> = A cos θ</li>
+                <li><strong>Vertical component:</strong> A<sub>y</sub> = A sin θ</li>
+            </ul>
+
+            <p>
+                These components are like shadows of the vector on the axes. Together, they completely describe the original vector.
+            </p>
+
+            <!-- Simulation 3: Vector Resolution -->
+            <div class="simulation">
+                <div class="simulation-title">Interactive: Vector Resolution</div>
+                <p style="font-size: 0.95rem; color: #6b7280; margin-bottom: 1rem;">
+                    Drag the tip of vector A. Watch how its x-component (red) and y-component (blue) change. The components always form a right triangle.
+                </p>
+                <canvas id="resolutionCanvas" width="600" height="400"></canvas>
+                <div class="readout">
+                    <div class="readout-item">
+                        <span class="readout-label">|A| =</span>
+                        <span class="readout-value" id="resolutionMag">0.0</span>
+                        <span class="readout-label">units</span>
+                    </div>
+                    <div class="readout-item">
+                        <span class="readout-label">θ =</span>
+                        <span class="readout-value" id="resolutionAngle">0.0</span>
+                        <span class="readout-label">°</span>
+                    </div>
+                    <div class="readout-item">
+                        <span class="readout-label">A<sub>x</sub> =</span>
+                        <span class="readout-value" id="resolutionX">0.0</span>
+                        <span class="readout-label">units</span>
+                    </div>
+                    <div class="readout-item">
+                        <span class="readout-label">A<sub>y</sub> =</span>
+                        <span class="readout-value" id="resolutionY">0.0</span>
+                        <span class="readout-label">units</span>
+                    </div>
+                </div>
+            </div>
+
+            <div class="callout">
+                <div class="callout-title">💡 Why this matters</div>
+                <p>
+                    When you throw a ball, gravity only affects the vertical component of velocity. The horizontal component stays constant (ignoring air resistance). Splitting vectors makes complex motion simple.
+                </p>
+            </div>
+        </section>
+
+        <!-- Section 4: Projectile Motion -->
+        <section class="section fade-in">
+            <h2>4. Projectile Motion — Throwing Things</h2>
+
+            <p>
+                Throw a ball. It curves through the air in a parabola. That's <strong>projectile motion</strong> — the combination of:
+            </p>
+            <ul>
+                <li>Constant horizontal velocity (no forces acting)</li>
+                <li>Constant downward acceleration (gravity: g = 9.8 m/s²)</li>
+            </ul>
+
+            <p>
+                The key insight: horizontal and vertical motions are <em>independent</em>. Treat them separately, then combine the results.
+            </p>
+
+            <p><strong>Key formulas:</strong></p>
+            <ul>
+                <li>Time of flight: T = (2v₀ sin θ) / g</li>
+                <li>Maximum height: H = (v₀² sin² θ) / 2g</li>
+                <li>Range: R = (v₀² sin 2θ) / g</li>
+            </ul>
+
+            <!-- Simulation 4: Projectile Motion -->
+            <div class="simulation">
+                <div class="simulation-title">Interactive: Projectile Launcher</div>
+                <p style="font-size: 0.95rem; color: #6b7280; margin-bottom: 1rem;">
+                    Adjust the angle and initial velocity. Click "Launch" to see the projectile fly. Watch the trajectory trace out.
+                </p>
+                <canvas id="projectileCanvas" width="600" height="400"></canvas>
+                <div class="readout">
+                    <div style="display: flex; gap: 1rem; margin-bottom: 1rem; flex-wrap: wrap;">
+                        <div style="flex: 1; min-width: 120px;">
+                            <label style="font-size: 0.9rem; color: #475569;">Angle (°):</label>
+                            <input type="range" id="angleSlider" min="0" max="90" value="45" style="width: 100%;">
+                            <span id="angleValue" style="color: #0891b2; font-weight: bold;">45°</span>
+                        </div>
+                        <div style="flex: 1; min-width: 120px;">
+                            <label style="font-size: 0.9rem; color: #475569;">Velocity (m/s):</label>
+                            <input type="range" id="velocitySlider" min="10" max="50" value="25" style="width: 100%;">
+                            <span id="velocityValue" style="color: #0891b2; font-weight: bold;">25 m/s</span>
+                        </div>
+                    </div>
+                    <div class="readout-item">
+                        <span class="readout-label">Range:</span>
+                        <span class="readout-value" id="projectileRange">0.0</span>
+                        <span class="readout-label">m</span>
+                    </div>
+                    <div class="readout-item">
+                        <span class="readout-label">Max Height:</span>
+                        <span class="readout-value" id="projectileHeight">0.0</span>
+                        <span class="readout-label">m</span>
+                    </div>
+                    <div class="readout-item">
+                        <span class="readout-label">Time of Flight:</span>
+                        <span class="readout-value" id="projectileTime">0.0</span>
+                        <span class="readout-label">s</span>
+                    </div>
+                </div>
+                <button class="control-btn" id="launchBtn">Launch Projectile</button>
+            </div>
+
+            <div class="callout">
+                <div class="callout-title">💡 Did you know?</div>
+                <p>
+                    The maximum range happens at 45°. But if you're throwing from a height (like a cliff), the optimal angle is less than 45°. Air resistance complicates things further — real trajectories aren't perfect parabolas.
+                </p>
+            </div>
+        </section>
+
         <!-- Footer navigation -->
         <div class="chapter-nav fade-in">
             <p class="coming-soon-text">
-                <strong>More sections coming soon:</strong> Resolution of Vectors, Projectile Motion, Circular Motion
+                <strong>Next up:</strong> Circular Motion, Relative Velocity
             </p>
             <div class="nav-buttons">
                 <div class="nav-btn">← Previous: Chapter 3</div>
@@ -1123,6 +1252,329 @@
 
         render2();
 
+        // ========== SIMULATION 3: Vector Resolution ==========
+        /**
+         * Shows how a vector breaks down into x and y components
+         * User drags vector and sees components update in real-time
+         */
+        const canvas3 = document.getElementById('resolutionCanvas');
+        const ctx3 = canvas3.getContext('2d');
+
+        canvas3.width = 600 * dpr;
+        canvas3.height = 400 * dpr;
+        canvas3.style.width = '600px';
+        canvas3.style.height = '400px';
+        ctx3.scale(dpr, dpr);
+
+        const origin3 = { x: 100, y: 300 };
+        const scale3 = 50;
+        let vector3 = { x: 4, y: 3 };
+        let dragging3 = false;
+
+        function drawGrid3() {
+            ctx3.strokeStyle = 'rgba(203, 213, 225, 0.5)';
+            ctx3.lineWidth = 0.5;
+
+            for (let x = 0; x <= 600; x += scale3) {
+                ctx3.beginPath();
+                ctx3.moveTo(x, 0);
+                ctx3.lineTo(x, 400);
+                ctx3.stroke();
+            }
+
+            for (let y = 0; y <= 400; y += scale3) {
+                ctx3.beginPath();
+                ctx3.moveTo(0, y);
+                ctx3.lineTo(600, y);
+                ctx3.stroke();
+            }
+
+            ctx3.strokeStyle = 'rgba(100, 116, 139, 0.6)';
+            ctx3.lineWidth = 2;
+
+            // X axis
+            ctx3.beginPath();
+            ctx3.moveTo(0, origin3.y);
+            ctx3.lineTo(600, origin3.y);
+            ctx3.stroke();
+
+            // Y axis
+            ctx3.beginPath();
+            ctx3.moveTo(origin3.x, 0);
+            ctx3.lineTo(origin3.x, 400);
+            ctx3.stroke();
+        }
+
+        function drawResolutionVector(vx, vy) {
+            const endX = origin3.x + vx * scale3;
+            const endY = origin3.y - vy * scale3;
+
+            // Draw X component (red dashed line along x-axis)
+            ctx3.strokeStyle = '#dc2626';
+            ctx3.lineWidth = 2;
+            ctx3.setLineDash([5, 5]);
+            ctx3.beginPath();
+            ctx3.moveTo(origin3.x, origin3.y);
+            ctx3.lineTo(endX, origin3.y);
+            ctx3.stroke();
+            ctx3.setLineDash([]);
+
+            // Draw Y component (blue dashed line along y-axis)
+            ctx3.strokeStyle = '#2563eb';
+            ctx3.lineWidth = 2;
+            ctx3.setLineDash([5, 5]);
+            ctx3.beginPath();
+            ctx3.moveTo(endX, origin3.y);
+            ctx3.lineTo(endX, endY);
+            ctx3.stroke();
+            ctx3.setLineDash([]);
+
+            // Draw main vector (teal)
+            ctx3.strokeStyle = '#0891b2';
+            ctx3.lineWidth = 3;
+            ctx3.shadowBlur = 10;
+            ctx3.shadowColor = '#0891b2';
+            ctx3.beginPath();
+            ctx3.moveTo(origin3.x, origin3.y);
+            ctx3.lineTo(endX, endY);
+            ctx3.stroke();
+            ctx3.shadowBlur = 0;
+
+            // Arrowhead
+            const angle = Math.atan2(-vy, vx);
+            const headlen = 12;
+
+            ctx3.fillStyle = '#0891b2';
+            ctx3.beginPath();
+            ctx3.moveTo(endX, endY);
+            ctx3.lineTo(
+                endX - headlen * Math.cos(angle - Math.PI / 6),
+                endY + headlen * Math.sin(angle - Math.PI / 6)
+            );
+            ctx3.lineTo(
+                endX - headlen * Math.cos(angle + Math.PI / 6),
+                endY + headlen * Math.sin(angle + Math.PI / 6)
+            );
+            ctx3.closePath();
+            ctx3.fill();
+
+            // Labels
+            ctx3.fillStyle = '#0891b2';
+            ctx3.font = 'bold 16px sans-serif';
+            ctx3.fillText('A', endX + 10, endY - 10);
+
+            ctx3.fillStyle = '#dc2626';
+            ctx3.fillText('Aₓ', origin3.x + (endX - origin3.x) / 2, origin3.y + 20);
+
+            ctx3.fillStyle = '#2563eb';
+            ctx3.fillText('Aᵧ', endX + 15, origin3.y - (origin3.y - endY) / 2);
+
+            // Draggable point
+            ctx3.fillStyle = '#0891b2';
+            ctx3.beginPath();
+            ctx3.arc(endX, endY, 8, 0, Math.PI * 2);
+            ctx3.fill();
+        }
+
+        function updateReadout3() {
+            const magnitude = Math.sqrt(vector3.x ** 2 + vector3.y ** 2);
+            const angle = Math.atan2(vector3.y, vector3.x) * (180 / Math.PI);
+
+            document.getElementById('resolutionMag').textContent = magnitude.toFixed(2);
+            document.getElementById('resolutionAngle').textContent = angle.toFixed(1);
+            document.getElementById('resolutionX').textContent = vector3.x.toFixed(2);
+            document.getElementById('resolutionY').textContent = vector3.y.toFixed(2);
+        }
+
+        function render3() {
+            ctx3.clearRect(0, 0, 600, 400);
+            drawGrid3();
+            drawResolutionVector(vector3.x, vector3.y);
+            updateReadout3();
+        }
+
+        function getMousePos3(e) {
+            const rect = canvas3.getBoundingClientRect();
+            const scaleX = 600 / rect.width;
+            const scaleY = 400 / rect.height;
+            const clientX = e.touches ? e.touches[0].clientX : e.clientX;
+            const clientY = e.touches ? e.touches[0].clientY : e.clientY;
+
+            return {
+                x: (clientX - rect.left) * scaleX,
+                y: (clientY - rect.top) * scaleY
+            };
+        }
+
+        canvas3.addEventListener('mousedown', (e) => {
+            const pos = getMousePos3(e);
+            const endX = origin3.x + vector3.x * scale3;
+            const endY = origin3.y - vector3.y * scale3;
+
+            const dist = Math.sqrt((pos.x - endX) ** 2 + (pos.y - endY) ** 2);
+            if (dist < 20) dragging3 = true;
+        });
+
+        canvas3.addEventListener('touchstart', (e) => {
+            e.preventDefault();
+            const pos = getMousePos3(e);
+            const endX = origin3.x + vector3.x * scale3;
+            const endY = origin3.y - vector3.y * scale3;
+
+            const dist = Math.sqrt((pos.x - endX) ** 2 + (pos.y - endY) ** 2);
+            if (dist < 20) dragging3 = true;
+        });
+
+        canvas3.addEventListener('mousemove', (e) => {
+            if (dragging3) {
+                const pos = getMousePos3(e);
+                vector3.x = Math.max(0, (pos.x - origin3.x) / scale3);
+                vector3.y = -(pos.y - origin3.y) / scale3;
+                render3();
+            }
+        });
+
+        canvas3.addEventListener('touchmove', (e) => {
+            e.preventDefault();
+            if (dragging3) {
+                const pos = getMousePos3(e);
+                vector3.x = Math.max(0, (pos.x - origin3.x) / scale3);
+                vector3.y = -(pos.y - origin3.y) / scale3;
+                render3();
+            }
+        });
+
+        canvas3.addEventListener('mouseup', () => { dragging3 = false; });
+        canvas3.addEventListener('touchend', () => { dragging3 = false; });
+        canvas3.addEventListener('mouseleave', () => { dragging3 = false; });
+
+        render3();
+
+        // ========== SIMULATION 4: Projectile Motion ==========
+        /**
+         * Interactive projectile launcher - adjust angle and velocity, watch trajectory
+         */
+        const canvas4 = document.getElementById('projectileCanvas');
+        const ctx4 = canvas4.getContext('2d');
+
+        canvas4.width = 600 * dpr;
+        canvas4.height = 400 * dpr;
+        canvas4.style.width = '600px';
+        canvas4.style.height = '400px';
+        ctx4.scale(dpr, dpr);
+
+        const g = 9.8; // gravity
+        let angleProj = 45;
+        let velocityProj = 25;
+        let isLaunching = false;
+        let projectilePos = { x: 50, y: 350 };
+        let trajectory = [];
+        let animationFrame = null;
+
+        document.getElementById('angleSlider').addEventListener('input', (e) => {
+            angleProj = parseInt(e.target.value);
+            document.getElementById('angleValue').textContent = angleProj + '°';
+            calculateProjectile();
+        });
+
+        document.getElementById('velocitySlider').addEventListener('input', (e) => {
+            velocityProj = parseInt(e.target.value);
+            document.getElementById('velocityValue').textContent = velocityProj + ' m/s';
+            calculateProjectile();
+        });
+
+        function calculateProjectile() {
+            const theta = angleProj * Math.PI / 180;
+            const v0 = velocityProj;
+
+            const timeOfFlight = (2 * v0 * Math.sin(theta)) / g;
+            const maxHeight = (v0 ** 2 * Math.sin(theta) ** 2) / (2 * g);
+            const range = (v0 ** 2 * Math.sin(2 * theta)) / g;
+
+            document.getElementById('projectileRange').textContent = range.toFixed(1);
+            document.getElementById('projectileHeight').textContent = maxHeight.toFixed(1);
+            document.getElementById('projectileTime').textContent = timeOfFlight.toFixed(2);
+
+            return { timeOfFlight, maxHeight, range };
+        }
+
+        function drawProjectileScene() {
+            ctx4.clearRect(0, 0, 600, 400);
+
+            // Ground
+            ctx4.fillStyle = '#10b981';
+            ctx4.fillRect(0, 350, 600, 50);
+
+            // Launch platform
+            ctx4.fillStyle = '#6b7280';
+            ctx4.fillRect(40, 340, 30, 10);
+
+            // Trajectory path
+            if (trajectory.length > 1) {
+                ctx4.strokeStyle = '#fbbf24';
+                ctx4.lineWidth = 2;
+                ctx4.setLineDash([3, 3]);
+                ctx4.beginPath();
+                ctx4.moveTo(trajectory[0].x, trajectory[0].y);
+                for (let i = 1; i < trajectory.length; i++) {
+                    ctx4.lineTo(trajectory[i].x, trajectory[i].y);
+                }
+                ctx4.stroke();
+                ctx4.setLineDash([]);
+            }
+
+            // Projectile
+            if (isLaunching) {
+                ctx4.fillStyle = '#dc2626';
+                ctx4.beginPath();
+                ctx4.arc(projectilePos.x, projectilePos.y, 6, 0, Math.PI * 2);
+                ctx4.fill();
+            }
+        }
+
+        function launchProjectile() {
+            if (isLaunching) return;
+
+            isLaunching = true;
+            trajectory = [];
+            projectilePos = { x: 50, y: 350 };
+
+            const theta = angleProj * Math.PI / 180;
+            const v0 = velocityProj;
+            const { timeOfFlight, range } = calculateProjectile();
+
+            const scale = 500 / range; // Scale to fit canvas
+            let t = 0;
+            const dt = 0.03;
+
+            function animate() {
+                if (t > timeOfFlight) {
+                    isLaunching = false;
+                    return;
+                }
+
+                const x = v0 * Math.cos(theta) * t;
+                const y = v0 * Math.sin(theta) * t - 0.5 * g * t ** 2;
+
+                projectilePos.x = 50 + x * scale;
+                projectilePos.y = 350 - y * scale;
+
+                trajectory.push({ x: projectilePos.x, y: projectilePos.y });
+
+                drawProjectileScene();
+
+                t += dt;
+                animationFrame = requestAnimationFrame(animate);
+            }
+
+            animate();
+        }
+
+        document.getElementById('launchBtn').addEventListener('click', launchProjectile);
+
+        calculateProjectile();
+        drawProjectileScene();
+
         // Pause simulations when scrolled out of view (performance)
         const canvasObserver = new IntersectionObserver((entries) => {
             entries.forEach(entry => {
@@ -1134,6 +1586,8 @@
 
         canvasObserver.observe(canvas1);
         canvasObserver.observe(canvas2);
+        canvasObserver.observe(canvas3);
+        canvasObserver.observe(canvas4);
     </script>
 </body>
 </html>
