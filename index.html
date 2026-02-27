@@ -13,8 +13,8 @@
 
         body {
             font-family: 'Segoe UI', system-ui, -apple-system, sans-serif;
-            background: #0f1117;
-            color: #e8eaf0;
+            background: #f8f9fa;
+            color: #1a1d2e;
             line-height: 1.8;
             overflow-x: hidden;
         }
@@ -33,15 +33,15 @@
         /* Navigation */
         nav {
             padding: 1.5rem 2rem;
-            background: rgba(26, 29, 46, 0.8);
+            background: rgba(255, 255, 255, 0.9);
             backdrop-filter: blur(10px);
-            border-bottom: 1px solid #3d3f5a;
+            border-bottom: 1px solid #e2e8f0;
         }
 
         .logo {
             font-size: 1.5rem;
             font-weight: bold;
-            color: #00d4ff;
+            color: #0891b2;
             text-decoration: none;
         }
 
@@ -57,7 +57,7 @@
             font-size: 4rem;
             font-weight: bold;
             margin-bottom: 1rem;
-            background: linear-gradient(135deg, #00d4ff, #06d6a0);
+            background: linear-gradient(135deg, #0891b2, #059669);
             -webkit-background-clip: text;
             -webkit-text-fill-color: transparent;
             background-clip: text;
@@ -66,12 +66,12 @@
         .hero .tagline {
             font-size: 1.5rem;
             margin-bottom: 0.5rem;
-            color: #e8eaf0;
+            color: #1a1d2e;
         }
 
         .hero .subtext {
             font-size: 1.1rem;
-            color: #8b8fa8;
+            color: #6b7280;
             margin-bottom: 3rem;
         }
 
@@ -91,21 +91,22 @@
             min-width: 200px;
             text-align: center;
             padding: 1.5rem;
-            background: #1a1d2e;
+            background: #ffffff;
             border-radius: 12px;
-            border: 1px solid #3d3f5a;
+            border: 1px solid #e2e8f0;
+            box-shadow: 0 2px 8px rgba(0, 0, 0, 0.05);
         }
 
         .explainer-step .number {
             font-size: 2rem;
             font-weight: bold;
-            color: #00d4ff;
+            color: #0891b2;
             margin-bottom: 0.5rem;
         }
 
         .explainer-step .text {
             font-size: 1rem;
-            color: #e8eaf0;
+            color: #1a1d2e;
         }
 
         /* Class grid */
@@ -123,9 +124,9 @@
         }
 
         .class-card {
-            background: #1a1d2e;
+            background: #ffffff;
             border-radius: 12px;
-            border: 1px solid #3d3f5a;
+            border: 1px solid #e2e8f0;
             padding: 2rem;
             text-align: center;
             transition: all 0.3s ease;
@@ -133,12 +134,13 @@
             text-decoration: none;
             color: inherit;
             display: block;
+            box-shadow: 0 2px 8px rgba(0, 0, 0, 0.05);
         }
 
         .class-card:hover:not(.coming-soon) {
             transform: translateY(-5px);
-            box-shadow: 0 10px 30px rgba(0, 212, 255, 0.3);
-            border-color: #00d4ff;
+            box-shadow: 0 10px 30px rgba(8, 145, 178, 0.2);
+            border-color: #0891b2;
         }
 
         .class-card.coming-soon {
@@ -150,11 +152,11 @@
             font-size: 2.5rem;
             font-weight: bold;
             margin-bottom: 0.5rem;
-            color: #00d4ff;
+            color: #0891b2;
         }
 
         .class-card.coming-soon .class-number {
-            color: #8b8fa8;
+            color: #9ca3af;
         }
 
         .class-name {
@@ -168,26 +170,26 @@
             border-radius: 20px;
             font-size: 0.85rem;
             margin-top: 0.5rem;
-            background: #3d3f5a;
-            color: #8b8fa8;
+            background: #e2e8f0;
+            color: #6b7280;
         }
 
         .badge.special {
-            background: rgba(255, 209, 102, 0.2);
-            color: #ffd166;
+            background: #fef3c7;
+            color: #d97706;
         }
 
         .badge.active {
-            background: rgba(6, 214, 160, 0.2);
-            color: #06d6a0;
+            background: #d1fae5;
+            color: #059669;
         }
 
         /* Footer */
         footer {
             text-align: center;
             padding: 3rem 2rem;
-            color: #8b8fa8;
-            border-top: 1px solid #3d3f5a;
+            color: #6b7280;
+            border-top: 1px solid #e2e8f0;
             margin-top: 5rem;
         }
 
@@ -363,7 +365,7 @@
             particles.forEach(particle => {
                 ctx.beginPath();
                 ctx.arc(particle.x, particle.y, particle.radius, 0, Math.PI * 2);
-                ctx.fillStyle = '#00d4ff';
+                ctx.fillStyle = '#0891b2';
                 ctx.fill();
 
                 // Update position
